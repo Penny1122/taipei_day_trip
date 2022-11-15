@@ -1,7 +1,14 @@
 from flask import *
-app=Flask(__name__)
+from flask_restful import Api
+import sys
+sys.path.append("module")
+from module.attractions import Search
+
+app=Flask(__name__,static_folder="public",static_url_path="/")
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
+app.config.update(RESTFUL_JSON=dict(ensure_ascii=False))
+api = Api(app)
 
 # Pages
 @app.route("/")
@@ -17,4 +24,6 @@ def booking():
 def thankyou():
 	return render_template("thankyou.html")
 
-app.run(port=3000)
+api.add_resource(Search,"/api/attractions")
+
+app.run(port=3000, debug=True)

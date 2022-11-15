@@ -8,11 +8,14 @@ class Search(Resource):
             page=int(request.args.get("page","0"))
             keyword=request.args.get("keyword","")
         except:
-            error={
+            error=jsonify({
                 "error":True,
                 "message":"type Wrong"
-            }
-            return error,500
+            })
+            error.status_code="500"
+            error.headers["Content-Type"] = "application/json"
+            error.headers["Access-Control-Allow-Origin"] = "*"
+            return error
 
         if keyword == "":
             try:
@@ -54,7 +57,14 @@ class Search(Resource):
                     data.headers["Access-Control-Allow-Origin"] = "*"
                     return data
             except:
-                print("Connection Error")
+                error=jsonify({
+                "error":True,
+                "message":"Server Error"
+                })
+                error.status_code="500"
+                error.headers["Content-Type"] = "application/json"
+                error.headers["Access-Control-Allow-Origin"] = "*"
+                return error
             finally:
                 cursor.close()
                 connection.close()
@@ -103,6 +113,50 @@ class Search(Resource):
             finally:
                 cursor.close()
                 connection.close()
+class SearchID(Resource):
+    def get(self,attractionID):
+        try:
+            connection=database.DBconnect().get_connection()
+            cursor=connection.cursor() 
+            cursor.execute("SELECT * FROM attractions WHERE id=%s",[attractionID])
+            data=cursor.fetchone()
+            if data != None:
+                data=jsonify({"data":{
+                    "id":data[0],
+                    "name":data[1],
+                    "category":data[2],
+                    "description":data[3],
+                    "address":data[4],
+                    "transport":data[5],
+                    "mrt":data[6],
+                    "lat":data[7],
+                    "lng":data[8],
+                    "images":json.loads(data[9]),
+                }})
+                data.headers["Content-Type"] = "application/json"
+                data.headers["Access-Control-Allow-Origin"] = "*"
+                return data
+            else:
+                error=jsonify({
+                "error":True,
+                "message":"ID Wrong"
+            })
+            error.status_code="400"
+            error.headers["Content-Type"] = "application/json"
+            error.headers["Access-Control-Allow-Origin"] = "*"
+            return error
+        except:
+                error=jsonify({
+                "error":True,
+                "message":"Server Error"
+            })
+                error.status_code="500"
+                error.headers["Content-Type"] = "application/json"
+                error.headers["Access-Control-Allow-Origin"] = "*"
+                return error
+        finally:
+            cursor.close()
+            connection.close()
 
 
     

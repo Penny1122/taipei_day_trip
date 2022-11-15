@@ -157,6 +157,36 @@ class SearchID(Resource):
         finally:
             cursor.close()
             connection.close()
+class SearchCategory(Resource):
+    def get(self):
+        try:
+            connection=database.DBconnect().get_connection()
+            cursor=connection.cursor()
+            cursor.execute("SELECT DISTINCT(category) FROM attractions")
+            result=cursor.fetchall()
+            data=[]
+            for i in result:
+                data1=i[0]
+                data.append(data1)
+            data=jsonify({
+                "data":data
+            })
+            data.headers["Content-Type"] = "application/json"
+            data.headers["Access-Control-Allow-Origin"] = "*"
+            return data
+
+        except:
+                error=jsonify({
+                "error":True,
+                "message":"Server Error"
+            })
+                error.status_code="500"
+                error.headers["Content-Type"] = "application/json"
+                error.headers["Access-Control-Allow-Origin"] = "*"
+                return error
+        finally:
+            cursor.close()
+            connection.close()
 
 
     

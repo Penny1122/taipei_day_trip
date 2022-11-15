@@ -2,7 +2,7 @@ from flask import *
 from flask_restful import Api
 import sys
 sys.path.append("module")
-from module.attractions import Search, SearchID
+from module.attractions import Search, SearchID, SearchCategory
 
 app=Flask(__name__,static_folder="public",static_url_path="/")
 app.config["JSON_AS_ASCII"]=False
@@ -26,5 +26,6 @@ def thankyou():
 
 api.add_resource(Search,"/api/attractions")
 api.add_resource(SearchID,"/api/attraction/<attractionID>")
+api.add_resource(SearchCategory,"/api/categories")
 
 app.run(port=3000, debug=True)

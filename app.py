@@ -8,6 +8,7 @@ app=Flask(__name__,static_folder="public",static_url_path="/")
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 app.config.update(RESTFUL_JSON=dict(ensure_ascii=False))
+app.config["JSON_SORT_KEYS"]=False
 api = Api(app)
 
 # Pages

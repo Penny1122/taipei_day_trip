@@ -29,4 +29,4 @@ api.add_resource(Search,"/api/attractions")
 api.add_resource(SearchID,"/api/attraction/<attractionID>")
 api.add_resource(SearchCategory,"/api/categories")
 
-app.run(port=3000, debug=True)
+app.run(host="0.0.0.0", port=3000, debug=True)

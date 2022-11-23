@@ -2,16 +2,10 @@ let content = document.querySelector(".content");
 let button = document.querySelector(".btn");
 let input = document.querySelector(".input1");
 let category = document.querySelector(".category");
+let footer = document.querySelector(".footer");
 let fail = document.querySelector(".fail");
 
 window.onload = observe(0, "");
-
-button.addEventListener("click", function () {
-  let keyword = input.value;
-  content.innerHTML = "";
-  input.value = "";
-  observe(0, keyword);
-});
 //無限滾動
 function observe(page, keyword) {
   let configs = {
@@ -63,7 +57,7 @@ function observe(page, keyword) {
                 imageDiv.appendChild(imgTag);
                 imageDiv.appendChild(attractionNameDiv);
                 imageDiv.appendChild(titleDiv);
-                document.querySelector(".content").appendChild(imageDiv);
+                content.appendChild(imageDiv);
                 fail.style.display = "none";
               }
             } else {
@@ -78,15 +72,13 @@ function observe(page, keyword) {
       }
     });
   }, configs);
-  let footer = document.querySelector(".footer");
+
   observer.observe(footer);
   button.addEventListener("click", function () {
     observer.unobserve(footer);
   });
 }
-
 //關鍵字list呈現
-
 input.addEventListener("click", function () {
   fetch("http://43.206.76.136:3000/api/categories")
     .then(function (response) {
@@ -118,3 +110,10 @@ function value(e) {
   input.value = e;
   // input.setAttribute("value", e);
 }
+//搜尋關鍵字
+button.addEventListener("click", function () {
+  let keyword = input.value;
+  content.innerHTML = "";
+  input.value = "";
+  observe(0, keyword);
+});

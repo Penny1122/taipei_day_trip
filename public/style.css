@@ -42,9 +42,6 @@ input {
   /* width: 175px;
   height: 34px; */
 }
-.Frame2 div:hover {
-  cursor: pointer;
-}
 .Frame1 {
   display: flex;
   color: #666666;
@@ -198,12 +195,17 @@ input {
   border: 1px solid #e8e8e8;
   position: relative;
   z-index: 0;
+  overflow: hidden;
 }
 .image img {
   width: 270px;
   height: 197px;
   object-fit: cover;
   display: block;
+}
+.image img:hover {
+  transform: scale(1.1);
+  transition: all 0.5s ease 0s;
 }
 .attractionName {
   display: flex;
@@ -277,6 +279,9 @@ input {
   position: absolute;
   left: 50%;
   transform: translate(-50%, 70%);
+}
+a {
+  text-decoration: none;
 }
 @media (max-width: 1200px) {
   .container {

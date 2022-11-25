@@ -28,8 +28,8 @@ function observe(page, keyword) {
             // console.log(clist[0].images[0]);
             if (clist != "") {
               for (let i = 0; i < clist.length; i++) {
-                let imageDiv = document.createElement("div");
-                imageDiv.setAttribute("class", "image");
+                // let imageDiv = document.createElement("div");
+                // imageDiv.setAttribute("class", "image");
                 let titleDiv = document.createElement("div");
                 titleDiv.setAttribute("class", "title");
 
@@ -54,10 +54,14 @@ function observe(page, keyword) {
                 attractionNameDiv.setAttribute("class", "attractionName");
                 attractionNameDiv.appendChild(attractionNameText);
 
-                imageDiv.appendChild(imgTag);
-                imageDiv.appendChild(attractionNameDiv);
-                imageDiv.appendChild(titleDiv);
-                content.appendChild(imageDiv);
+                let aTag = document.createElement("a");
+                aTag.setAttribute("class", "image");
+                aTag.setAttribute("href", `/attraction/${clist[i].id}`);
+
+                aTag.appendChild(imgTag);
+                aTag.appendChild(attractionNameDiv);
+                aTag.appendChild(titleDiv);
+                content.appendChild(aTag);
                 fail.style.display = "none";
               }
             } else {

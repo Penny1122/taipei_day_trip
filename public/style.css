@@ -183,7 +183,7 @@ input {
   grid-area: content;
   display: grid;
   grid-template-columns: repeat(auto-fill, 270px);
-  grid-template-rows: repeat(auto-fill, 242px);
+  /* grid-template-rows: repeat(auto-fill, 242px); */
   grid-gap: 30px;
   padding: 15px;
   margin: 40px 0;
@@ -214,15 +214,12 @@ input {
   left: 0;
   bottom: 45px;
   width: 270px;
-  height: 40px;
   background-color: rgba(0, 0, 0, 0.6);
   color: #ffffff;
   font-size: 16px;
   font-weight: 700;
-  line-height: 13.3px;
   padding: 10px;
   box-sizing: border-box;
-  white-space: nowrap;
 }
 .title {
   box-sizing: border-box;
@@ -270,15 +267,15 @@ input {
   display: none;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
 .fail div {
+  display: flex;
+  justify-content: center;
   background-image: url(not-found.png);
   background-size: cover;
   width: 250px;
   height: 250px;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 70%);
 }
 a {
   text-decoration: none;

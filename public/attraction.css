@@ -107,7 +107,7 @@ body {
   position: absolute;
   top: 185px;
   left: 10px;
-  background-image: url(btn_leftArrow.png);
+  background-image: url(/image/btn_leftArrow.png);
   background-repeat: no-repeat;
   width: 36px;
   height: 36px;
@@ -117,7 +117,7 @@ body {
   position: absolute;
   top: 185px;
   right: 10px;
-  background-image: url(btn_rightArrow.png);
+  background-image: url(/image/btn_rightArrow.png);
   background-repeat: no-repeat;
   width: 36px;
   height: 36px;
@@ -136,7 +136,7 @@ body {
   margin: 0px 6px;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(circle\ current.png);
+  background-image: url(/image/circle\ current.png);
 }
 .not-current {
   width: 12px;
@@ -144,7 +144,7 @@ body {
   margin: 0px 6px;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(circle\ current2.png);
+  background-image: url(/image/circle\ current2.png);
 }
 .profile {
   width: 600px;
@@ -176,7 +176,7 @@ body {
 }
 .booking-form {
   width: 600px;
-  height: 302px;
+  height: 310px;
   background-color: #e8e8e8;
   border-radius: 5px;
 }
@@ -240,7 +240,7 @@ body {
 input[type="date"]::-webkit-calendar-picker-indicator {
   color: rgba(0, 0, 0, 0);
   opacity: 1;
-  background: url(icon_calendar.png) no-repeat;
+  background: url(/image/icon_calendar.png) no-repeat;
   background-position: center;
   width: 24px;
   height: 24px;
@@ -272,6 +272,7 @@ input[type="date"]::-webkit-datetime-edit-fields-wrapper {
   display: flex;
   align-items: center;
   color: #666666;
+  margin-right: 10px;
 }
 .radio-btn {
   display: flex;
@@ -318,7 +319,7 @@ input[type="date"]::-webkit-datetime-edit-fields-wrapper {
   display: flex;
   align-items: center;
   color: #666666;
-  margin-right: 4px;
+  margin-right: 18px;
   margin-left: 4px;
 }
 

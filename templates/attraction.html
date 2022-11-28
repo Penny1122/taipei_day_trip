@@ -22,7 +22,7 @@
       <div class="content">
         <div class="section">
           <div class="img">
-            <img src="/cat.jpg" />
+            <img src="/image/cat.jpg" />
             <div class="leftArrow"></div>
             <div class="rightArrow"></div>
             <div class="circle">
@@ -33,8 +33,8 @@
           </div>
 
           <div class="profile">
-            <div class="profile-text1">平安鐘</div>
-            <div class="profile-text2">藝文館所 at 忠孝復興</div>
+            <div class="profile-text1"></div>
+            <div class="profile-text2"></div>
             <div class="booking-form">
               <div class="text1">訂購導覽行程</div>
               <div class="text2">
@@ -45,28 +45,30 @@
                 <input class="input" type="date" />
               </div>
               <div class="fieldTime">
-                <div class="fieldDate-text">選擇時間：</div>
-                <div class="radio-btn">
-                  <input
-                    type="radio"
-                    class="button_radio"
-                    name="ellipse"
-                    id="radioId"
-                    checked
-                  />
-                  <label class="button_label" for="radioId"></label>
-                  <div class="ellipse-text">上半天</div>
-                </div>
-                <div class="radio-btn">
-                  <input
-                    type="radio"
-                    class="button_radio"
-                    name="ellipse"
-                    id="radioId2"
-                  />
-                  <label class="button_label" for="radioId2"></label>
-                  <div class="ellipse-text">下半天</div>
-                </div>
+                <div class="fieldTime-text">選擇時間：</div>
+
+                <input
+                  type="radio"
+                  class="button_radio"
+                  name="ellipse"
+                  id="radioId"
+                  checked
+                />
+                <label class="button_label" for="radioId"></label>
+                <label for="radioId"
+                  ><div class="ellipse-text">上半天</div></label
+                >
+
+                <input
+                  type="radio"
+                  class="button_radio"
+                  name="ellipse"
+                  id="radioId2"
+                />
+                <label class="button_label" for="radioId2"></label>
+                <label for="radioId2"
+                  ><div class="ellipse-text">下半天</div></label
+                >
               </div>
               <div class="fieldPrice">
                 <div class="fieldPrice-text1">導覽費用：</div>
@@ -79,14 +81,11 @@
 
         <hr />
         <div class="infors">
-          <div class="infors-text1 div1">
-            平安鐘祈求大家的平安，這是為了紀念921地震週年的設計，在喧鬧的廣場上每個小時鳴鐘，保佑平安，祈禱臺灣不會再發生這樣的天災。雙手合十加上108個黃色的琉璃乳丁，隨著緩緩流下的水，在底下的一個小噴泉噴出。雙手合十的意義，一個是祈福，一個是包容，教我們要包容這樣的改變，撫平這樣的傷口。下面的水緩緩流出，代表著人的生命力是不斷地延續下去。緩緩地鐘聲，卻帶來心中的寧靜。
-            這個平安鐘是由建築師姚仁喜與琉璃創作家王俠軍共同設計，長6公尺、寬5公尺，以鑄銅製成，由法鼓山文教基金會全額出資。平安鐘點綴都市景觀，不時提醒大家，面對刻骨銘心的災難痛苦，更應該有謙卑的一顆心。
-          </div>
+          <div class="infors-text1 div1 description"></div>
           <div class="infors-text2 div2">景點地址：</div>
-          <div class="infors-text1 div3">臺北市 大安區忠孝東路4段</div>
+          <div class="infors-text1 div3 address"></div>
           <div class="infors-text2">交通方式：</div>
-          <div class="infors-text1">
+          <div class="infors-text1 transport">
             捷運站名：忠孝復興站4號出口1.公車：204、212、212直、232、232副、262、262(區間)、278、299、521、605、605(副)、605(新台五線)、667、903、忠孝新幹線至頂好市場站
             2.車位：太平洋崇光百貨地下停車場或市民大道附近地下停車場
           </div>
@@ -94,5 +93,6 @@
       </div>
       <div class="footer"><div>COPYRIGHT © 2021 台北一日遊</div></div>
     </div>
+    <script src="/attraction.js"></script>
   </body>
 </html>

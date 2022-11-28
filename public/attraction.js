@@ -7,7 +7,12 @@ const amButton = document.querySelector("#radioId");
 const pmButton = document.querySelector("#radioId2");
 const price = document.querySelector(".fieldPrice-text2");
 
+const slides = document.querySelector(".slides");
+const circle = document.querySelector(".circle");
+
+let slideIndex = 0;
 let path = location.pathname;
+
 // console.log(path);
 fetch(`/api${path}`)
   .then(function (response) {
@@ -20,6 +25,17 @@ fetch(`/api${path}`)
     description.textContent = clist.description;
     address.textContent = clist.address;
     transport.textContent = clist.transport;
+
+    let image = "";
+    let dot = "";
+    for (let i = 0; i < clist.images.length; i++) {
+      image += `<div class="img fade"><img src=${clist.images[i]} /></div>`;
+      dot += `<span class="dot" onclick="currentSlide(${i})"></span>`;
+    }
+    slides.innerHTML = image;
+    circle.innerHTML = dot;
+
+    showSlides(slideIndex);
   });
 
 amButton.addEventListener("click", function () {
@@ -28,3 +44,29 @@ amButton.addEventListener("click", function () {
 pmButton.addEventListener("click", function () {
   price.textContent = "新台幣 2500 元";
 });
+
+function plusSlides(n) {
+  showSlides((slideIndex += n));
+}
+
+function currentSlide(n) {
+  showSlides((slideIndex = n));
+}
+
+function showSlides(n) {
+  let i;
+  let img = document.querySelectorAll(".img");
+  let dot = document.querySelectorAll(".dot");
+  if (n >= img.length) {
+    slideIndex = 0;
+  }
+  if (n < 0) {
+    slideIndex = img.length - 1;
+  }
+  for (i = 0; i < img.length; i++) {
+    img[i].style.display = "none";
+    dot[i].className = dot[i].className.replace(" active", "");
+  }
+  img[slideIndex].style.display = "block";
+  dot[slideIndex].className += " active";
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/attraction.css" />
+    <title>景點介紹</title>
+  </head>
+  <body>
+    <div class="header">
+      <div class="navigation">
+        <a href="/">
+          <div class="taipei">台北一日遊</div>
+        </a>
+        <div class="Frame2">
+          <div class="Frame1 order">預定行程</div>
+          <div class="Frame1 sign">登入/註冊</div>
+        </div>
+      </div>
+    </div>
+    <div class="space"></div>
+    <div class="container">
+      <div class="content">
+        <div class="section">
+          <div class="slideshow-container">
+            <div class="slides">
+              <!-- <div class="img">
+                <img src="/image/cat.jpg" />
+              </div>
+              <div class="img">
+               <img
+                  src="https://sarachen1020.github.io/wehelp_assignment/week-1/02-2.jpg"
+                />
+              </div>
+              <div class="img">
+                <img
+                  src="https://sarachen1020.github.io/wehelp_assignment/week-1/02-3.jpg"
+                />
+              </div> -->
+            </div>
+
+            <div class="leftArrow" onclick="plusSlides(-1)"></div>
+            <div class="rightArrow" onclick="plusSlides(1)"></div>
+
+            <div class="circle">
+              <!-- <span class="dot" onclick="currentSlide(0)"></span>
+              <span class="dot" onclick="currentSlide(1)"></span>
+              <span class="dot" onclick="currentSlide(2)"></span> -->
+            </div>
+          </div>
+
+          <div class="profile">
+            <div class="profile-text1"></div>
+            <div class="profile-text2"></div>
+            <div class="booking-form">
+              <div class="text1">訂購導覽行程</div>
+              <div class="text2">
+                以此景點為中心的一日行程，帶您探索城市角落故事
+              </div>
+              <div class="fieldDate">
+                <div class="fieldDate-text">選擇日期：</div>
+                <input class="input" type="date" />
+              </div>
+              <div class="fieldTime">
+                <div class="fieldTime-text">選擇時間：</div>
+
+                <input
+                  type="radio"
+                  class="button_radio"
+                  name="ellipse"
+                  id="radioId"
+                  checked
+                />
+                <label class="button_label" for="radioId"></label>
+                <label for="radioId"
+                  ><div class="ellipse-text">上半天</div></label
+                >
+
+                <input
+                  type="radio"
+                  class="button_radio"
+                  name="ellipse"
+                  id="radioId2"
+                />
+                <label class="button_label" for="radioId2"></label>
+                <label for="radioId2"
+                  ><div class="ellipse-text">下半天</div></label
+                >
+              </div>
+              <div class="fieldPrice">
+                <div class="fieldPrice-text1">導覽費用：</div>
+                <div class="fieldPrice-text2">新台幣 2000 元</div>
+              </div>
+              <button><div>開始預約行程</div></button>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+        <div class="infors">
+          <div class="infors-text1 div1 description"></div>
+          <div class="infors-text2 div2">景點地址：</div>
+          <div class="infors-text1 div3 address"></div>
+          <div class="infors-text2">交通方式：</div>
+          <div class="infors-text1 transport"></div>
+        </div>
+      </div>
+      <div class="footer"><div>COPYRIGHT © 2022 台北一日遊</div></div>
+    </div>
+    <script src="/attraction.js"></script>
+  </body>
+</html>

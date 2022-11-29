@@ -437,7 +437,8 @@ hr {
     width: 100%;
   }
   .profile,
-  .booking-form {
+  .booking-form,
+  .slideshow-container {
     width: 100%;
   }
 }
@@ -454,5 +455,11 @@ hr {
     margin: 0;
     padding-left: 10px;
     padding-right: 10px;
+  }
+  .img img {
+    height: 350px;
+  }
+  .slideshow-container {
+    height: 350px;
   }
 }

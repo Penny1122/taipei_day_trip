@@ -8,6 +8,9 @@ input {
   padding: 0;
   border: 0;
 }
+a {
+  text-decoration: none;
+}
 
 .header {
   background-color: white;
@@ -21,7 +24,6 @@ input {
 .navigation {
   display: flex;
   background-color: white;
-
   width: 1200px;
 }
 .taipei {
@@ -39,8 +41,6 @@ input {
   display: flex;
   justify-content: flex-end;
   flex: auto;
-  /* width: 175px;
-  height: 34px; */
 }
 .Frame1 {
   display: flex;
@@ -277,9 +277,7 @@ input {
   width: 250px;
   height: 250px;
 }
-a {
-  text-decoration: none;
-}
+
 @media (max-width: 1200px) {
   .container {
     grid-template-columns: 1fr 90% 1fr;

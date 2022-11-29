@@ -17,9 +17,7 @@ function observe(page, keyword) {
   let observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        fetch(
-          `http://43.206.76.136:3000/api/attractions?page=${page}&keyword=${keyword}`
-        )
+        fetch(`/api/attractions?page=${page}&keyword=${keyword}`)
           .then(function (response) {
             return response.json();
           })
@@ -84,7 +82,7 @@ function observe(page, keyword) {
 }
 //關鍵字list呈現
 input.addEventListener("click", function () {
-  fetch("http://43.206.76.136:3000/api/categories")
+  fetch("/api/categories")
     .then(function (response) {
       return response.json();
     })

@@ -6,7 +6,6 @@ const transport = document.querySelector(".transport");
 const amButton = document.querySelector("#radioId");
 const pmButton = document.querySelector("#radioId2");
 const price = document.querySelector(".fieldPrice-text2");
-
 const slides = document.querySelector(".slides");
 const circle = document.querySelector(".circle");
 
@@ -30,7 +29,7 @@ fetch(`/api${path}`)
     let dot = "";
     for (let i = 0; i < clist.images.length; i++) {
       image += `<div class="img fade"><img src=${clist.images[i]} /></div>`;
-      dot += `<span class="dot" onclick="currentSlide(${i})"></span>`;
+      dot += `<span class="circleDot" onclick="currentSlide(${i})"></span>`;
     }
     slides.innerHTML = image;
     circle.innerHTML = dot;
@@ -56,7 +55,7 @@ function currentSlide(n) {
 function showSlides(n) {
   let i;
   let img = document.querySelectorAll(".img");
-  let dot = document.querySelectorAll(".dot");
+  let circleDot = document.querySelectorAll(".circleDot");
   if (n >= img.length) {
     slideIndex = 0;
   }
@@ -65,8 +64,8 @@ function showSlides(n) {
   }
   for (i = 0; i < img.length; i++) {
     img[i].style.display = "none";
-    dot[i].className = dot[i].className.replace(" active", "");
+    circleDot[i].className = circleDot[i].className.replace(" active", "");
   }
   img[slideIndex].style.display = "block";
-  dot[slideIndex].className += " active";
+  circleDot[slideIndex].className += " active";
 }

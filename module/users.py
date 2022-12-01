@@ -97,14 +97,13 @@ class userAuth(Resource):
                 response.set_cookie("token",value=encoded_jwt, max_age=604800)
                 response.headers["Access-Control-Allow-Origin"] = "*"
                 return response
-            else:
-                response=jsonify({
-                "error":True,
-                "message":"登入失敗，帳號或密碼錯誤或其他原因"
-                })
-                response.status_code="400"
-                response.headers["Access-Control-Allow-Origin"] = "*"
-                return response
+            response=jsonify({
+            "error":True,
+            "message":"登入失敗，帳號或密碼錯誤"
+            })
+            response.status_code="400"
+            response.headers["Access-Control-Allow-Origin"] = "*"
+            return response
         except:
             response=jsonify({
             "error":True,
@@ -116,6 +115,7 @@ class userAuth(Resource):
         finally:
             cursor.close()
             connection.close()
+
     def get(self):
         JWTcookie = request.cookies.get("token")
         # print(JWTcookie)
@@ -124,19 +124,18 @@ class userAuth(Resource):
                 "data":None
             })
             response.headers["Access-Control-Allow-Origin"] = "*"
-            return response
-        
-        decoded_jwt=jwt.decode(JWTcookie, key, algorithms=["HS256"])
+            return response   
+        decoded_jwt=jwt.decode(JWTcookie, key, algorithms="HS256")
         # print(decoded_jwt)
-        response = make_response(jsonify({
+        response =jsonify({
             "data":decoded_jwt
-        }))
+        })
         response.headers["Access-Control-Allow-Origin"] = "*"
         return response
 
     def delete(self):
         response = make_response(jsonify({
-                "ok":True,
+                "ok":True
             }))
         response.delete_cookie("token")
         response.headers["Access-Control-Allow-Origin"] = "*"

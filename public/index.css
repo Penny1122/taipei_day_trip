@@ -43,6 +43,7 @@ a {
   flex: auto;
 }
 .Frame1 {
+  cursor: pointer;
   display: flex;
   color: #666666;
   justify-content: center;
@@ -76,6 +77,7 @@ a {
 }
 
 .slogan {
+  /* position: absolute; */
   margin-top: 75px;
   width: 1200px;
   height: 169px;
@@ -170,6 +172,91 @@ a {
   border-radius: 5px;
   cursor: pointer;
 }
+.signin {
+  display: none;
+  position: absolute;
+  top: 80px;
+  width: 340px;
+  height: 275px;
+  background: #ffffff;
+  box-shadow: 0px 4px 60px #aaaaaa;
+  border-radius: 6px;
+}
+.signup {
+  /* display: none; */
+  position: absolute;
+  top: 80px;
+  width: 340px;
+  height: 332px;
+  background: #ffffff;
+  box-shadow: 0px 4px 60px #aaaaaa;
+  border-radius: 6px;
+}
+.bar {
+  width: 340px;
+  height: 10px;
+  border-radius: 6px 6px 0 0;
+  background: linear-gradient(270deg, #337788 0%, #66aabb 100%);
+}
+.account {
+  position: relative;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  color: #666666;
+  width: 310px;
+  height: 27px;
+  margin: 15px 15px 10px 15px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.account img {
+  cursor: pointer;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  right: 0;
+}
+.signInput {
+  box-sizing: border-box;
+  width: 310px;
+  height: 47px;
+  border: 1px solid #cccccc;
+  margin: 5px 15px;
+  border-radius: 5px;
+  padding: 15px;
+  outline: none;
+}
+.signInput::placeholder {
+  font-weight: 500;
+  font-size: 16px;
+  color: #757575;
+}
+.signButton {
+  cursor: pointer;
+  width: 310px;
+  height: 47px;
+  background: #448899;
+  border-radius: 5px;
+  margin: 5px 15px;
+  border: none;
+  padding: 10px;
+  font-weight: 400;
+  font-size: 19px;
+  color: #ffffff;
+}
+.goToSignUpOrIn {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  color: #666666;
+  margin: 5px 15px;
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   display: grid;
   grid-template-columns: 1fr 1200px 1fr;

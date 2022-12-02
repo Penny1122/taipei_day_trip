@@ -5,9 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="/attraction.css" />
+    <link rel="stylesheet" type="text/css" href="/sign.css" />
     <title>景點介紹</title>
   </head>
   <body>
+    <div class="opacity"></div>
     <div class="header">
       <div class="navigation">
         <a href="/">
@@ -16,8 +18,69 @@
         <div class="Frame2">
           <div class="Frame1 order">預定行程</div>
           <div class="Frame1 sign">登入/註冊</div>
+          <div class="Frame1 signout none">登出</div>
         </div>
       </div>
+    </div>
+    <div class="signin">
+      <div class="bar"></div>
+      <div class="account">
+        登入會員帳號<img class="close" src="/image/icon_close.png" />
+      </div>
+      <div>
+        <input
+          type="email"
+          name="email"
+          class="signInput"
+          id="signInEmail"
+          placeholder="輸入電子信箱"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          class="signInput"
+          id="signInPassword"
+          placeholder="輸入密碼"
+          required
+        />
+        <button class="signButton signInButton" type="submit">登入帳戶</button>
+      </div>
+      <div class="goToSignUpOrIn goToSignUp">還沒有帳戶？點此註冊</div>
+    </div>
+    <div class="signup">
+      <div class="bar"></div>
+      <div class="account">
+        註冊會員帳號<img class="close" src="/image/icon_close.png" />
+      </div>
+      <div>
+        <input
+          type="text"
+          name="email"
+          class="signInput"
+          id="signUpName"
+          placeholder="輸入姓名"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          class="signInput"
+          id="signUpEmail"
+          placeholder="輸入電子郵件"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          class="signInput"
+          id="signUpPassword"
+          placeholder="輸入密碼"
+          required
+        />
+        <button class="signButton signupButton">註冊新帳戶</button>
+      </div>
+      <div class="goToSignUpOrIn goToSignIn">已經有帳戶了？點此登入</div>
     </div>
     <div class="space"></div>
     <div class="container">
@@ -92,7 +155,7 @@
                 <div class="fieldPrice-text1">導覽費用：</div>
                 <div class="fieldPrice-text2">新台幣 2000 元</div>
               </div>
-              <button><div>開始預約行程</div></button>
+              <button class="start"><div>開始預約行程</div></button>
             </div>
           </div>
         </div>
@@ -109,5 +172,6 @@
       <div class="footer"><div>COPYRIGHT © 2022 台北一日遊</div></div>
     </div>
     <script src="/attraction.js"></script>
+    <script src="/sign.js"></script>
   </body>
 </html>

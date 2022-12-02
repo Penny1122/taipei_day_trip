@@ -11,7 +11,7 @@ connection_pool = mysql.connector.pooling.MySQLConnectionPool(
     pool_reset_session = True,
 )
 
-src="D:/taipei-day-trip/data/taipei-attractions.json"
+src="C:/taipei_day_trip/data/taipei-attractions.json"
 file=open(src, "r", encoding="utf-8")
 data=json.load(file)
 clist=data["result"]["results"]

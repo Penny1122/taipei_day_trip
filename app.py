@@ -25,6 +25,10 @@ def booking():
 @app.route("/thankyou")
 def thankyou():
 	return render_template("thankyou.html")
+@app.route("/member")
+def member():
+	return render_template("member.html")
+
 
 api.add_resource(Search,"/api/attractions")
 api.add_resource(SearchID,"/api/attraction/<attractionID>")

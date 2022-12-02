@@ -15,7 +15,7 @@
 
 .signin {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 80px;
   right: 50%;
   transform: translate(50%, 0);
@@ -28,7 +28,7 @@
 }
 .signup {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 80px;
   right: 50%;
   transform: translate(50%, 0);

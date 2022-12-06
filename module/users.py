@@ -4,8 +4,9 @@ import jwt
 from flask import *
 from flask_bcrypt import *
 from flask_restful import Resource
+from config import secretKey
 
-key="123456789"
+key=secretKey.jwtconfig()
 
 connection=database.DBconnect().get_connection()
 cursor=connection.cursor()

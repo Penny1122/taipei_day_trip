@@ -1,6 +1,6 @@
 import configparser
 config = configparser.ConfigParser()
-config.read("secret.ini")
+config.read("secretKey.ini")
 
 class secretKey():
     def dbconfig(self):

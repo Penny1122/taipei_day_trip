@@ -11,6 +11,28 @@ const signupButton = document.querySelector(".signupButton");
 const signInEmail = document.querySelector("#signInEmail");
 const signInPassword = document.querySelector("#signInPassword");
 const opacity = document.querySelector(".opacity");
+const success = document.querySelector(".success");
+const wrong = document.querySelector(".wrong");
+const wrong2 = document.querySelector(".wrong2");
+const Path = location.pathname;
+
+function check(element, type) {
+  let rule;
+  if (type == "email") {
+    rule = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+  } else if (type == "password") {
+    rule = /[0-9a-zA-z]{6,12}/;
+  } else if (type == "name") {
+    rule = /^[\u4e00-\u9fa5_a-zA-Z0-9_]{2,20}$/;
+  }
+
+  let regex = new RegExp(rule);
+  if (regex.test(element.value)) {
+    element.style.backgroundImage = "url(/image/correct_icon.png)";
+  } else {
+    element.style.backgroundImage = "url(/image/incorrect_icon.png)";
+  }
+}
 
 function get() {
   let url = "/api/user/auth";
@@ -22,17 +44,13 @@ function get() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       if (data.data != null) {
-        sign.classList.toggle("none");
-        signout.classList.toggle("none");
+        sign.classList.add("none");
+        signout.classList.remove("none");
       } else {
         sign.style.display = "block";
         signout.style.display = "none";
       }
-      //   if (data["ok"]) {
-      //     document.location.href = "/member";
-      //   }
     });
 }
 get();
@@ -73,12 +91,10 @@ signInButton.addEventListener("click", function () {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       if (data["ok"]) {
-        sign.style.display = "none";
-        signout.style.display = "block";
-        signin.style.display = "none";
-        opacity.style.display = "none";
+        document.location.href = Path;
+      } else if (data["error"]) {
+        wrong.textContent = `${data.message}`;
       }
     });
 });
@@ -100,10 +116,11 @@ signupButton.addEventListener("click", function () {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-      //   if (data["ok"]) {
-      //     document.location.href = "/member";
-      //   }
+      if (data["ok"]) {
+        success.textContent = "註冊成功";
+      } else if (data["error"]) {
+        wrong2.textContent = `${data.message}`;
+      }
     });
 });
 
@@ -117,10 +134,8 @@ signout.addEventListener("click", function () {
       return response.json();
     })
     .then(function (data) {
-      //   console.log(data);
       if (data["ok"]) {
-        get();
-        console.log("OK");
+        document.location.href = Path;
       }
     });
 });

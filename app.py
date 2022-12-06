@@ -1,5 +1,6 @@
 from flask import *
 from flask_restful import Api
+from flask_bcrypt import Bcrypt
 import sys
 sys.path.append("module")
 from module.attractions import Search, SearchID, SearchCategory
@@ -11,6 +12,7 @@ app.config["TEMPLATES_AUTO_RELOAD"]=True
 app.config.update(RESTFUL_JSON=dict(ensure_ascii=False))
 app.config["JSON_SORT_KEYS"]=False
 api = Api(app)
+bcrypt = Bcrypt(app)
 
 # Pages
 @app.route("/")

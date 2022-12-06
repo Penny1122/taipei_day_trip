@@ -2,6 +2,7 @@ import database
 import re
 import jwt
 from flask import *
+from flask_bcrypt import *
 from flask_restful import Resource
 
 key="123456789"
@@ -24,7 +25,7 @@ class userSignup(Resource):
         if checkName == None or checkEmail == None or checkPassword == None:
             response=jsonify({
             "error":True,
-            "message":"註冊失敗，重複的 Email 或其他原因"
+            "message":"註冊失敗，註冊資料格式錯誤"
             })
             response.status_code="400"
             response.headers["Content-Type"] = "application/json"
@@ -36,6 +37,7 @@ class userSignup(Resource):
             cursor.execute("SELECT * FROM users WHERE email = %s",[email])
             result=cursor.fetchone()
             if result == None:
+                password = generate_password_hash(password).decode('utf-8')
                 cursor.execute("INSERT INTO users (name, email, password) VALUES (%s, %s, %s)",[name,email,password])
                 connection.commit()
                 response=jsonify({
@@ -67,7 +69,7 @@ class userAuth(Resource):
         password=request.json["password"]
         checkEmail=re.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",email)
         checkPassword=re.match("[0-9a-zA-z]{6,12}",password)
-        print(checkPassword)
+        # print(checkPassword)
         if checkEmail == None or checkPassword == None: 
             response=jsonify({
             "error":True,
@@ -78,19 +80,17 @@ class userAuth(Resource):
             return response
         try:
             connection=database.DBconnect().get_connection()
-            cursor=connection.cursor()
-            cursor.execute("SELECT id, name, email FROM users WHERE email = %s AND password = %s",[email,password])
+            cursor=connection.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM users WHERE email = %s ",[email])
             result=cursor.fetchone()
-            # print(result)
-            if result != None:
+            match = check_password_hash(result["password"], password)
+            if match == True and result != None:
                 JWT={
-                    "id":result[0],
-                    "name":result[1],
-                    "email":result[2]
+                    "id":result["id"],
+                    "name":result["name"],
+                    "email":result["email"]
                 }
-            # print(JWT)
                 encoded_jwt = jwt.encode(JWT,key,algorithm="HS256")
-                # print(encoded_jwt)
                 response = make_response(jsonify({
                     "ok":True,
             }))

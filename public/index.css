@@ -11,65 +11,6 @@ input {
 a {
   text-decoration: none;
 }
-
-.header {
-  background-color: white;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 54px;
-  z-index: 100;
-}
-.navigation {
-  display: flex;
-  background-color: white;
-  width: 1200px;
-}
-.taipei {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #448899;
-  width: 150px;
-  height: 34px;
-  font-size: 30px;
-  font-weight: 700;
-  margin: 10px 0px 10px 0px;
-}
-.Frame2 {
-  display: flex;
-  justify-content: flex-end;
-  flex: auto;
-}
-.Frame1 {
-  cursor: pointer;
-  display: flex;
-  color: #666666;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 13px;
-  height: 14px;
-}
-.order {
-  width: 64px;
-}
-.sign {
-  width: 71px;
-}
-.signout {
-  width: 50px;
-}
-
-.space {
-  width: 100%;
-  height: 54px;
-}
 .welcome {
   background-image: url(/image/welcome.png);
   background-repeat: no-repeat;
@@ -79,7 +20,6 @@ a {
   height: 320px;
   /* width: 100%; */
 }
-
 .slogan {
   /* position: absolute; */
   margin-top: 75px;
@@ -170,13 +110,11 @@ a {
   height: 20px;
   padding: 10px 15px 10px 15px;
 }
-
 .category div:hover {
   background: #e8e8e8;
   border-radius: 5px;
   cursor: pointer;
 }
-
 .container {
   display: grid;
   grid-template-columns: 1fr 1200px 1fr;
@@ -185,7 +123,6 @@ a {
     ". content ."
     "footer footer footer";
 }
-
 .content {
   grid-area: content;
   display: grid;
@@ -251,7 +188,6 @@ a {
 .cat {
   justify-content: flex-end;
 }
-
 .footer {
   display: flex;
   justify-content: center;

@@ -84,8 +84,16 @@ class userAuth(Resource):
             cursor=connection.cursor(dictionary=True)
             cursor.execute("SELECT * FROM users WHERE email = %s ",[email])
             result=cursor.fetchone()
+            if result == None:
+                response=jsonify({
+                "error":True,
+                "message":"登入失敗，帳號或密碼錯誤"
+                })
+                response.status_code="400"
+                response.headers["Access-Control-Allow-Origin"] = "*"
+                return response
             match = check_password_hash(result["password"], password)
-            if match == True and result != None:
+            if match == True:
                 JWT={
                     "id":result["id"],
                     "name":result["name"],

@@ -38,10 +38,10 @@ fetch(`/api${path}`)
   });
 
 amButton.addEventListener("click", function () {
-  price.textContent = "新台幣 <span class='price'>2000</span> 元";
+  price.textContent = "新台幣 2000 元";
 });
 pmButton.addEventListener("click", function () {
-  price.textContent = "新台幣 <span class='price'>2500</span> 元";
+  price.textContent = "新台幣 2500 元";
 });
 
 function plusSlides(n) {

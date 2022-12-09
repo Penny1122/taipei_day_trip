@@ -2,6 +2,7 @@ const sign = document.querySelector(".sign");
 const signin = document.querySelector(".signin");
 const signup = document.querySelector(".signup");
 const signout = document.querySelector(".signout");
+const order = document.querySelector(".order");
 const goToSignUp = document.querySelector(".goToSignUp");
 const goToSignIn = document.querySelector(".goToSignIn");
 const close = document.querySelectorAll(".close");
@@ -120,6 +121,24 @@ signupButton.addEventListener("click", function () {
         success.textContent = "註冊成功";
       } else if (data["error"]) {
         wrong2.textContent = `${data.message}`;
+      }
+    });
+});
+
+order.addEventListener("click", function () {
+  let url = "/api/user/auth";
+  fetch(url, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  }) //發送JSON格式資料給後端
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.data != null) {
+        document.location.href = "/booking";
+      } else {
+        signin.style.display = "block";
       }
     });
 });

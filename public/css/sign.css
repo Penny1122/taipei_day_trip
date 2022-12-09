@@ -42,9 +42,7 @@ body {
   color: #666666;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 20px 10px;
   font-weight: 500;
   font-size: 16px;
   line-height: 13px;
@@ -167,4 +165,22 @@ body {
   color: red;
   display: flex;
   justify-content: center;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #757575;
+  grid-area: footer;
+}
+.footer div {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 16px;
+  height: 24px;
+  width: 234px;
+  line-height: 13px;
+  margin: 40px;
 }

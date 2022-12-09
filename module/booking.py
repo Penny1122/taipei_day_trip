@@ -85,7 +85,8 @@ class bookingModel(Resource):
             connection=database.DBconnect().get_connection()
             cursor=connection.cursor(dictionary=True)
             cursor.execute("SELECT attractions.id,attractions.name,attractions.address,attractions.images, booking.date, booking.time, booking.price FROM booking INNER JOIN attractions ON attractions.id=booking.attractionId WHERE booking.userId = %s;",[userId])
-            result=cursor.fetchall()
+            # result=cursor.fetchone()
+            result=cursor.fetchone()
             if result == None:
                 response=jsonify({
                     "data":None
@@ -93,6 +94,8 @@ class bookingModel(Resource):
                 response.headers["Content-Type"] = "application/json"
                 response.headers["Access-Control-Allow-Origin"] = "*"
                 return response
+            cursor.execute("SELECT attractions.id,attractions.name,attractions.address,attractions.images, booking.date, booking.time, booking.price FROM booking INNER JOIN attractions ON attractions.id=booking.attractionId WHERE booking.userId = %s;",[userId])
+            result=cursor.fetchall()
             data=[]
             for i in result:
                 list={

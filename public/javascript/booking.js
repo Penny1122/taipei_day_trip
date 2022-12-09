@@ -16,6 +16,8 @@ function getData() {
       let result = data.data;
       if (result != null) {
         userName.textContent = `您好，${result.name}，待預訂的行程如下：`;
+      } else {
+        document.location.href = "/";
       }
     });
 }

@@ -154,7 +154,7 @@ signout.addEventListener("click", function () {
     })
     .then(function (data) {
       if (data["ok"]) {
-        document.location.href = Path;
+        document.location.href = "/";
       }
     });
 });

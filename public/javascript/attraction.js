@@ -5,7 +5,7 @@ const address = document.querySelector(".address");
 const transport = document.querySelector(".transport");
 const amButton = document.querySelector("#radioId");
 const pmButton = document.querySelector("#radioId2");
-const price = document.querySelector(".fieldPrice-text2");
+const price = document.querySelector(".money");
 const slides = document.querySelector(".slides");
 const circle = document.querySelector(".circle");
 
@@ -38,10 +38,10 @@ fetch(`/api${path}`)
   });
 
 amButton.addEventListener("click", function () {
-  price.textContent = "新台幣 2000 元";
+  price.textContent = " 2000 ";
 });
 pmButton.addEventListener("click", function () {
-  price.textContent = "新台幣 2500 元";
+  price.textContent = " 2500 ";
 });
 
 function plusSlides(n) {

@@ -127,10 +127,7 @@ signupButton.addEventListener("click", function () {
 
 order.addEventListener("click", function () {
   let url = "/api/user/auth";
-  fetch(url, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  }) //發送JSON格式資料給後端
+  fetch(url)
     .then(function (response) {
       return response.json();
     })

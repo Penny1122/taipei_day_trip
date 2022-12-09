@@ -8,6 +8,7 @@ const pmButton = document.querySelector("#radioId2");
 const price = document.querySelector(".money");
 const slides = document.querySelector(".slides");
 const circle = document.querySelector(".circle");
+const start = document.querySelector(".start");
 
 let slideIndex = 0;
 let path = location.pathname;
@@ -69,3 +70,19 @@ function showSlides(n) {
   img[slideIndex].style.display = "block";
   circleDot[slideIndex].className += " active";
 }
+
+//未完成
+start.addEventListener("click", function () {
+  let url = "/api/user/auth";
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.data != null) {
+        document.location.href = "/booking";
+      } else {
+        signin.style.display = "block";
+      }
+    });
+});

@@ -141,3 +141,6 @@ hr {
   color: #666666;
   margin: 40px 100px;
 }
+.information {
+  display: none;
+}

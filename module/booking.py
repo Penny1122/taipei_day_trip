@@ -19,7 +19,7 @@ class bookingModel(Resource):
         if JWTcookie == None:
             response=jsonify({
                 "error": True,
-                "message": "未登入系統"
+                "message": "未登入系統，請登入系統"
             })
             response.status_code="403"
             response.headers["Access-Control-Allow-Origin"] = "*"
@@ -30,7 +30,7 @@ class bookingModel(Resource):
         date=request.json["date"]
         time=request.json["time"]
         price=(request.json["price"])
-        if date == None:
+        if date == "":
             response=jsonify({
                 "error": True,
                 "message": "建立失敗，請輸入日期"

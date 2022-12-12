@@ -5,27 +5,28 @@ const address = document.querySelector(".address");
 const transport = document.querySelector(".transport");
 const amButton = document.querySelector("#radioId");
 const pmButton = document.querySelector("#radioId2");
-const price = document.querySelector(".money");
+const money = document.querySelector(".money");
 const slides = document.querySelector(".slides");
 const circle = document.querySelector(".circle");
 const start = document.querySelector(".start");
+const errorMessage = document.querySelector(".error-message");
 
 let slideIndex = 0;
 let path = location.pathname;
 
 // console.log(path);
-fetch(`/api${path}`)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    let clist = data.data;
+window.onload = getInfo();
+
+async function getInfo() {
+  try {
+    const response = await fetch(`/api${path}`);
+    const data = await response.json();
+    const clist = data.data;
     attractionName.textContent = clist.name;
     position.textContent = `${clist.category} at ${clist.mrt}`;
     description.textContent = clist.description;
     address.textContent = clist.address;
     transport.textContent = clist.transport;
-
     let image = "";
     let dot = "";
     for (let i = 0; i < clist.images.length; i++) {
@@ -36,13 +37,20 @@ fetch(`/api${path}`)
     circle.innerHTML = dot;
 
     showSlides(slideIndex);
-  });
+  } catch (error) {
+    console.log("error", error);
+  }
+}
 
 amButton.addEventListener("click", function () {
-  price.textContent = " 2000 ";
+  money.textContent = " 2000 ";
+  amButton.setAttribute("checked", "checked");
+  pmButton.removeAttribute("checked");
 });
 pmButton.addEventListener("click", function () {
-  price.textContent = " 2500 ";
+  money.textContent = " 2500 ";
+  amButton.removeAttribute("checked");
+  pmButton.setAttribute("checked", "checked");
 });
 
 function plusSlides(n) {
@@ -71,18 +79,39 @@ function showSlides(n) {
   circleDot[slideIndex].className += " active";
 }
 
-//未完成
 start.addEventListener("click", function () {
-  let url = "/api/user/auth";
-  fetch(url)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      if (data.data != null) {
-        document.location.href = "/booking";
-      } else {
-        signin.style.display = "block";
-      }
-    });
+  const inputDate = document.querySelector(".input");
+  const inputTime = document.querySelector("[name=ellipse]:checked").id;
+  let attractionId = path.replace("/attraction/", "");
+  let date = inputDate.value;
+  let time = inputTime == "radioId" ? "morning" : "afternoon";
+  let price = time == "morning" ? 2000 : 2500;
+  booking(attractionId, date, time, price);
 });
+
+async function booking(attractionId, date, time, price) {
+  try {
+    const response = await fetch("/api/booking", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        attractionId: attractionId,
+        date: date,
+        time: time,
+        price: price,
+      }),
+    });
+    let myStatus = response.status;
+    if (myStatus == 403) {
+      signin.style.display = "block";
+    }
+    const data = await response.json();
+    if (data.ok) {
+      document.location.href = "/booking";
+    } else if (data.error) {
+      errorMessage.textContent = data.message;
+    }
+  } catch (error) {
+    console.log("error", error);
+  }
+}

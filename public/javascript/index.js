@@ -14,63 +14,65 @@ function observe(page, keyword) {
     threshold: 0.5,
   };
 
-  let observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
+  let observer = new IntersectionObserver(async function (entries) {
+    entries.forEach(async function (entry) {
       if (entry.isIntersecting) {
-        fetch(`/api/attractions?page=${page}&keyword=${keyword}`)
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (data) {
-            let clist = data.data;
-            // console.log(clist[0].images[0]);
-            if (clist != "") {
-              for (let i = 0; i < clist.length; i++) {
-                // let imageDiv = document.createElement("div");
-                // imageDiv.setAttribute("class", "image");
-                let titleDiv = document.createElement("div");
-                titleDiv.setAttribute("class", "title");
+        try {
+          const response = await fetch(
+            `/api/attractions?page=${page}&keyword=${keyword}`
+          );
+          const data = await response.json();
+          let clist = data.data;
+          // console.log(clist[0].images[0]);
+          if (clist != "") {
+            for (let i = 0; i < clist.length; i++) {
+              // let imageDiv = document.createElement("div");
+              // imageDiv.setAttribute("class", "image");
+              let titleDiv = document.createElement("div");
+              titleDiv.setAttribute("class", "title");
 
-                //最內層Div
-                let mrtText = document.createTextNode(clist[i].mrt);
-                let mrtDiv = document.createElement("div");
-                mrtDiv.setAttribute("class", "mrt");
-                mrtDiv.appendChild(mrtText);
-                let catText = document.createTextNode(clist[i].category);
-                let catDiv = document.createElement("div");
-                catDiv.setAttribute("class", "cat");
-                catDiv.appendChild(catText);
-                //放入titleDiv
-                titleDiv.appendChild(mrtDiv);
-                titleDiv.appendChild(catDiv);
+              //最內層Div
+              let mrtText = document.createTextNode(clist[i].mrt);
+              let mrtDiv = document.createElement("div");
+              mrtDiv.setAttribute("class", "mrt");
+              mrtDiv.appendChild(mrtText);
+              let catText = document.createTextNode(clist[i].category);
+              let catDiv = document.createElement("div");
+              catDiv.setAttribute("class", "cat");
+              catDiv.appendChild(catText);
+              //放入titleDiv
+              titleDiv.appendChild(mrtDiv);
+              titleDiv.appendChild(catDiv);
 
-                let imgTag = document.createElement("img");
-                imgTag.setAttribute("src", clist[i].images[0]);
+              let imgTag = document.createElement("img");
+              imgTag.setAttribute("src", clist[i].images[0]);
 
-                let attractionNameText = document.createTextNode(clist[i].name);
-                let attractionNameDiv = document.createElement("div");
-                attractionNameDiv.setAttribute("class", "attractionName");
-                attractionNameDiv.appendChild(attractionNameText);
+              let attractionNameText = document.createTextNode(clist[i].name);
+              let attractionNameDiv = document.createElement("div");
+              attractionNameDiv.setAttribute("class", "attractionName");
+              attractionNameDiv.appendChild(attractionNameText);
 
-                let aTag = document.createElement("a");
-                aTag.setAttribute("class", "image");
-                aTag.setAttribute("href", `/attraction/${clist[i].id}`);
+              let aTag = document.createElement("a");
+              aTag.setAttribute("class", "image");
+              aTag.setAttribute("href", `/attraction/${clist[i].id}`);
 
-                aTag.appendChild(imgTag);
-                aTag.appendChild(attractionNameDiv);
-                aTag.appendChild(titleDiv);
-                content.appendChild(aTag);
-                fail.style.display = "none";
-              }
-            } else {
-              fail.style.display = "flex";
+              aTag.appendChild(imgTag);
+              aTag.appendChild(attractionNameDiv);
+              aTag.appendChild(titleDiv);
+              content.appendChild(aTag);
+              fail.style.display = "none";
             }
-            if (data.nextPage != null) {
-              page = data.nextPage;
-            } else {
-              observer.unobserve(footer);
-            }
-          });
+          } else {
+            fail.style.display = "flex";
+          }
+          if (data.nextPage != null) {
+            page = data.nextPage;
+          } else {
+            observer.unobserve(footer);
+          }
+        } catch (error) {
+          console.log("error", error);
+        }
       }
     });
   }, configs);
@@ -81,23 +83,23 @@ function observe(page, keyword) {
   });
 }
 //關鍵字list呈現
-input.addEventListener("click", function () {
-  fetch("/api/categories")
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      let clist = data.data;
-      category.innerHTML = "";
-      for (let i = 0; i < clist.length; i++) {
-        let div = document.createElement("div");
-        div.setAttribute("class", "item");
-        div.setAttribute("onclick", "value(this.innerHTML)");
-        div.textContent = clist[i];
-        category.appendChild(div);
-      }
-    });
-  category.style.display = "flex";
+input.addEventListener("click", async function () {
+  try {
+    const response = await fetch("/api/categories");
+    const data = await response.json();
+    const clist = data.data;
+    category.innerHTML = "";
+    for (let i = 0; i < clist.length; i++) {
+      let div = document.createElement("div");
+      div.setAttribute("class", "item");
+      div.setAttribute("onclick", "value(this.innerHTML)");
+      div.textContent = clist[i];
+      category.appendChild(div);
+    }
+    category.style.display = "flex";
+  } catch (error) {
+    console.log("error", error);
+  }
 });
 
 document.addEventListener(

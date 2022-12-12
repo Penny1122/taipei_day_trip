@@ -16,6 +16,10 @@ const success = document.querySelector(".success");
 const wrong = document.querySelector(".wrong");
 const wrong2 = document.querySelector(".wrong2");
 const Path = location.pathname;
+let member;
+let userStatus = false;
+
+getUserStatus();
 
 function check(element, type) {
   let rule;
@@ -35,26 +39,40 @@ function check(element, type) {
   }
 }
 
-function get() {
-  let url = "/api/user/auth";
-  fetch(url, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  }) //發送JSON格式資料給後端
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      if (data.data != null) {
-        sign.classList.add("none");
-        signout.classList.remove("none");
-      } else {
-        sign.style.display = "block";
-        signout.style.display = "none";
-      }
-    });
+async function getUserStatus() {
+  try {
+    const response = await fetch("/api/user/auth");
+    const data = await response.json();
+    const clist = data.data;
+    if (clist != null) {
+      member = clist.name;
+      sign.classList.add("none");
+      signout.classList.remove("none");
+      userStatus = true;
+    } else {
+      sign.style.display = "block";
+      signout.style.display = "none";
+      userStatus = false;
+    }
+  } catch (error) {
+    console.log("error", error);
+  }
+  // let url = "/api/user/auth";
+  // fetch(url) //發送JSON格式資料給後端
+  //   .then(function (response) {
+  //     return response.json();
+  //   })
+  //   .then(function (data) {
+  //     if (data.data != null) {
+  //       sign.classList.add("none");
+  //       signout.classList.remove("none");
+  //       userStatus = True;
+  //     } else {
+  //       sign.style.display = "block";
+  //       signout.style.display = "none";
+  //       userStatus = False;
+  //     }
 }
-get();
 
 sign.addEventListener("click", function () {
   opacity.style.display = "block";
@@ -92,9 +110,9 @@ signInButton.addEventListener("click", function () {
       return response.json();
     })
     .then(function (data) {
-      if (data["ok"]) {
+      if (data.ok) {
         document.location.href = Path;
-      } else if (data["error"]) {
+      } else if (data.error) {
         wrong.textContent = `${data.message}`;
       }
     });
@@ -126,18 +144,12 @@ signupButton.addEventListener("click", function () {
 });
 
 order.addEventListener("click", function () {
-  let url = "/api/user/auth";
-  fetch(url)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      if (data.data != null) {
-        document.location.href = "/booking";
-      } else {
-        signin.style.display = "block";
-      }
-    });
+  // getUserStatus();
+  if (userStatus) {
+    document.location.href = "/booking";
+  } else {
+    signin.style.display = "block";
+  }
 });
 
 signout.addEventListener("click", function () {

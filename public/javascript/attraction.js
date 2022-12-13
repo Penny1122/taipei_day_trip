@@ -10,6 +10,7 @@ const slides = document.querySelector(".slides");
 const circle = document.querySelector(".circle");
 const start = document.querySelector(".start");
 const errorMessage = document.querySelector(".error-message");
+const errorImage = document.querySelector(".error-image");
 
 let slideIndex = 0;
 let path = location.pathname;
@@ -109,6 +110,7 @@ async function booking(attractionId, date, time, price) {
     if (data.ok) {
       document.location.href = "/booking";
     } else if (data.error) {
+      errorImage.style.display = "block";
       errorMessage.textContent = data.message;
     }
   } catch (error) {

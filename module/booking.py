@@ -140,11 +140,10 @@ class bookingModel(Resource):
         attractionId=request.json["attractionId"]
         date=request.json["date"]
         time=request.json["time"]
-        price=(request.json["price"])
         try:    
             connection=database.DBconnect().get_connection()
             cursor=connection.cursor(dictionary=True)
-            cursor.execute("DELETE FROM booking WHERE userId=%s AND attractionId=%s AND date=%s AND time=%s AND price=%s",[userId,attractionId,date,time,price])
+            cursor.execute("DELETE FROM booking WHERE userId=%s AND attractionId=%s AND date=%s AND time=%s ",[userId,attractionId,date,time])
             connection.commit()
             response=jsonify({
                 "ok":True

@@ -285,6 +285,7 @@ input[type="date"]::-webkit-datetime-edit-fields-wrapper {
   color: #666666;
 }
 .start {
+  cursor: pointer;
   width: 154px;
   height: 36px;
   background: #448899;
@@ -359,6 +360,15 @@ hr {
 .money {
   margin: 0 10px;
 }
+.error-message {
+  color: #fa5252;
+}
+.error-image {
+  display: none;
+  width: 25px;
+  height: 25px;
+}
+
 @media (max-width: 1200px) {
   .container {
     grid-template-columns: 1fr 95% 1fr;

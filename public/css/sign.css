@@ -63,8 +63,20 @@ body {
   opacity: 0.25;
   z-index: 200;
 }
+.hidden {
+  visibility: hidden;
+}
 .none {
   display: none;
+}
+.signin,
+.signup {
+  animation: fadeTop 0.5s;
+}
+@keyframes fadeTop {
+  0% {
+    transform: translateY(-50px);
+  }
 }
 .signin {
   display: none;

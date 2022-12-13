@@ -16,6 +16,7 @@ const success = document.querySelector(".success");
 const wrong = document.querySelector(".wrong");
 const wrong2 = document.querySelector(".wrong2");
 const Path = location.pathname;
+const passwordRule = document.querySelector(".password-rule");
 let member;
 let userStatus = false;
 
@@ -50,28 +51,14 @@ async function getUserStatus() {
       signout.classList.remove("none");
       userStatus = true;
     } else {
-      sign.style.display = "block";
-      signout.style.display = "none";
+      sign.classList.remove("hidden");
+      sign.classList.remove("none");
+      signout.classList.add("none");
       userStatus = false;
     }
   } catch (error) {
     console.log("error", error);
   }
-  // let url = "/api/user/auth";
-  // fetch(url) //發送JSON格式資料給後端
-  //   .then(function (response) {
-  //     return response.json();
-  //   })
-  //   .then(function (data) {
-  //     if (data.data != null) {
-  //       sign.classList.add("none");
-  //       signout.classList.remove("none");
-  //       userStatus = True;
-  //     } else {
-  //       sign.style.display = "block";
-  //       signout.style.display = "none";
-  //       userStatus = False;
-  //     }
 }
 
 sign.addEventListener("click", function () {

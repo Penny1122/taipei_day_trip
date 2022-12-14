@@ -19,6 +19,7 @@ const Path = location.pathname;
 const passwordRule = document.querySelector(".password-rule");
 const errorImg1 = document.querySelector(".error-img1");
 const errorImg2 = document.querySelector(".error-img2");
+const signupSuccess = document.querySelector(".signup-success");
 let member;
 let userStatus = false;
 
@@ -133,7 +134,10 @@ signupButton.addEventListener("click", async function () {
     });
     const data = await response.json();
     if (data["ok"]) {
-      success.textContent = "註冊成功";
+      signupSuccess.style.display = "block";
+      signup.style.display = "none";
+      setTimeout("signupSuccess.style.display = 'none'", 3000);
+      setTimeout("signin.style.display = 'block'", 3000);
     } else if (data["error"]) {
       errorImg2.style.display = "block";
       wrong2.textContent = `${data.message}`;

@@ -148,23 +148,11 @@ hr {
   .container {
     grid-template-columns: 1fr 95% 1fr;
   }
-  .delete {
-    left: 100%;
-  }
-}
-@media (max-width: 600px) {
-  .container {
-    grid-template-columns: 1fr 100% 1fr;
-  }
   .section {
     margin: 40px 10px;
-    display: block;
   }
-  .image {
-    width: 100%;
-    height: 200px;
-    margin: 0;
-    padding: 0 10px 18px 10px;
+  .delete {
+    left: 100%;
   }
   .user-name,
   .contact-form,
@@ -174,6 +162,20 @@ hr {
   .confirm-field {
     margin-right: 20px;
   }
+}
+@media (max-width: 600px) {
+  .container {
+    grid-template-columns: 1fr 100% 1fr;
+  }
+  .section {
+    display: block;
+  }
+  .image {
+    width: 100%;
+    height: 200px;
+    margin: 0;
+    padding: 0 10px 18px 10px;
+  }
   .delete {
     left: 90%;
     top: 100%;
@@ -181,5 +183,9 @@ hr {
   hr {
     margin-left: 10px;
     margin-right: 10px;
+  }
+  .null {
+    margin-left: 20px;
+    margin-right: 20px;
   }
 }

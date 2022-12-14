@@ -73,11 +73,13 @@ goToSignIn.addEventListener("click", function () {
   signin.style.display = "block";
   signup.style.display = "none";
 });
-close.forEach((close) => {
-  close.addEventListener("click", function () {
+close.forEach((item) => {
+  item.addEventListener("click", function () {
     signin.style.display = "none";
     signup.style.display = "none";
     opacity.style.display = "none";
+    wrong.style.display = "none";
+    wrong2.style.display = "none";
   });
 });
 
@@ -101,37 +103,38 @@ signInButton.addEventListener("click", function () {
         document.location.href = Path;
       } else if (data.error) {
         wrong.textContent = `${data.message}`;
+        wrong.classList.remove("none");
       }
     });
 });
-signupButton.addEventListener("click", function () {
-  let name = document.querySelector("#signUpName").value;
-  let email = document.querySelector("#signUpEmail").value;
-  let password = document.querySelector("#signUpPassword").value;
-  let url = "/api/user";
-  fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name: name,
-      email: email,
-      password: password,
-    }), //發送JSON格式資料給後端
-  })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      if (data["ok"]) {
-        success.textContent = "註冊成功";
-      } else if (data["error"]) {
-        wrong2.textContent = `${data.message}`;
-      }
+signupButton.addEventListener("click", async function () {
+  try {
+    let name = document.querySelector("#signUpName").value;
+    let email = document.querySelector("#signUpEmail").value;
+    let password = document.querySelector("#signUpPassword").value;
+    let url = "/api/user";
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        password: password,
+      }), //發送JSON格式資料給後端
     });
+    const data = await response.json();
+    if (data["ok"]) {
+      success.textContent = "註冊成功";
+    } else if (data["error"]) {
+      wrong2.textContent = `${data.message}`;
+      wrong2.classList.remove("none");
+    }
+  } catch (error) {
+    console.log("error", error);
+  }
 });
 
 order.addEventListener("click", function () {
-  // getUserStatus();
   if (userStatus) {
     document.location.href = "/booking";
   } else {
@@ -139,18 +142,17 @@ order.addEventListener("click", function () {
   }
 });
 
-signout.addEventListener("click", function () {
-  let url = "/api/user/auth";
-  fetch(url, {
-    method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-  })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      if (data["ok"]) {
-        document.location.href = "/";
-      }
+signout.addEventListener("click", async function () {
+  try {
+    const response = await fetch("/api/user/auth", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
     });
+    const data = await response.json();
+    if (data["ok"]) {
+      document.location.href = "/";
+    }
+  } catch (error) {
+    console.log("error", error);
+  }
 });

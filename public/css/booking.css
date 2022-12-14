@@ -169,7 +169,7 @@ hr {
   .user-name,
   .contact-form,
   .payment {
-    margin: 0 10px;
+    margin: 0 20px;
   }
   .confirm-field {
     margin-right: 20px;
@@ -177,5 +177,9 @@ hr {
   .delete {
     left: 90%;
     top: 100%;
+  }
+  hr {
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }

@@ -17,6 +17,8 @@ const wrong = document.querySelector(".wrong");
 const wrong2 = document.querySelector(".wrong2");
 const Path = location.pathname;
 const passwordRule = document.querySelector(".password-rule");
+const errorImg1 = document.querySelector(".error-img1");
+const errorImg2 = document.querySelector(".error-img2");
 let member;
 let userStatus = false;
 
@@ -66,10 +68,14 @@ sign.addEventListener("click", function () {
   signin.style.display = "block";
 });
 goToSignUp.addEventListener("click", function () {
+  errorImg1.style.display = "none";
+  wrong.style.display = "none";
   signin.style.display = "none";
   signup.style.display = "block";
 });
 goToSignIn.addEventListener("click", function () {
+  errorImg2.style.display = "none";
+  wrong2.style.display = "none";
   signin.style.display = "block";
   signup.style.display = "none";
 });
@@ -80,6 +86,8 @@ close.forEach((item) => {
     opacity.style.display = "none";
     wrong.style.display = "none";
     wrong2.style.display = "none";
+    errorImg1.style.display = "none";
+    errorImg2.style.display = "none";
   });
 });
 
@@ -102,8 +110,9 @@ signInButton.addEventListener("click", function () {
       if (data.ok) {
         document.location.href = Path;
       } else if (data.error) {
+        errorImg1.style.display = "block";
         wrong.textContent = `${data.message}`;
-        wrong.classList.remove("none");
+        wrong.style.display = "block";
       }
     });
 });
@@ -126,8 +135,9 @@ signupButton.addEventListener("click", async function () {
     if (data["ok"]) {
       success.textContent = "註冊成功";
     } else if (data["error"]) {
+      errorImg2.style.display = "block";
       wrong2.textContent = `${data.message}`;
-      wrong2.classList.remove("none");
+      wrong2.style.display = "block";
     }
   } catch (error) {
     console.log("error", error);

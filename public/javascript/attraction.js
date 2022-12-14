@@ -11,6 +11,8 @@ const circle = document.querySelector(".circle");
 const start = document.querySelector(".start");
 const errorMessage = document.querySelector(".error-message");
 const errorImage = document.querySelector(".error-image");
+const bookingSuccess = document.querySelector(".booking-success");
+const bookingClose = document.querySelector(".booking-success-close");
 
 let slideIndex = 0;
 let path = location.pathname;
@@ -108,7 +110,11 @@ async function booking(attractionId, date, time, price) {
     }
     const data = await response.json();
     if (data.ok) {
-      document.location.href = "/booking";
+      errorImage.style.display = "none";
+      errorMessage.textContent = "";
+      bookingSuccess.style.display = "block";
+      // setTimeout("location.href = '/booking'", 3000);
+      // document.location.href = "/booking";
     } else if (data.error) {
       errorImage.style.display = "block";
       errorMessage.textContent = data.message;
@@ -117,3 +123,6 @@ async function booking(attractionId, date, time, price) {
     console.log("error", error);
   }
 }
+bookingClose.addEventListener("click", function () {
+  bookingSuccess.style.display = "none";
+});

@@ -174,7 +174,7 @@ body {
 .wrong2 {
   font-weight: 400;
   font-size: 16px;
-  color: red;
+  color: #fa5252;
   display: flex;
   justify-content: center;
 }
@@ -195,4 +195,10 @@ body {
   width: 234px;
   line-height: 13px;
   margin: 40px;
+}
+.error-img1,
+.error-img2 {
+  display: none;
+  width: 25px;
+  height: 25px;
 }

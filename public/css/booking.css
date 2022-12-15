@@ -39,10 +39,17 @@ a {
   line-height: 16px;
   color: #666666;
 }
-.image {
-  margin: 0 8px;
+.image-block {
   width: 250px;
   height: 200px;
+}
+.image {
+  margin: 0 8px;
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+  /* width: 250px;
+  height: 200px; */
 }
 .info {
   margin-left: 22px;
@@ -170,11 +177,18 @@ hr {
   .section {
     display: block;
   }
-  .image {
+  .image-block {
     width: 100%;
+    height: 256px;
+  }
+  .image {
     height: 200px;
-    margin: 0;
-    padding: 0 10px 18px 10px;
+    margin: 28px 0;
+  }
+  .user-name,
+  .contact-form,
+  .payment {
+    margin: 0 10px;
   }
   .delete {
     left: 90%;

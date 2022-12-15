@@ -29,7 +29,9 @@ async function getBookingInfo() {
         information += `
           <div class="section">
             <a href="/attraction/${result[i].attraction.id}">
-              <img class="image" src="${result[i].attraction.image}" />
+              <div class="image-block">
+                <img class="image" src="${result[i].attraction.image}" />
+              </div>
             </a>
             <div class="info">
                 <div class="name">台北一日遊：${result[i].attraction.name}</div>

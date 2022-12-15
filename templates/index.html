@@ -19,7 +19,7 @@
         </a>
         <div class="Frame2">
           <div class="Frame1 order">預定行程</div>
-          <div class="Frame1 sign none">登入/註冊</div>
+          <div class="Frame1 sign hidden">登入/註冊</div>
           <div class="Frame1 signout none">登出系統</div>
         </div>
       </div>
@@ -46,9 +46,13 @@
           placeholder="輸入密碼"
           oninput="check(this, 'password')"
         />
+        <div class="password-rule"></div>
         <button class="signButton signInButton" type="submit">登入帳戶</button>
       </div>
-      <div class="wrong"></div>
+      <div style="display: flex; justify-content: center">
+        <img src="/image/error_icon.png" class="error-img1" />
+        <div class="wrong"></div>
+      </div>
       <div class="goToSignUpOrIn goToSignUp">還沒有帳戶？點此註冊</div>
     </div>
     <div class="signup">
@@ -59,7 +63,7 @@
       <div>
         <input
           type="text"
-          name="email"
+          name="name"
           class="signInput"
           id="signUpName"
           placeholder="輸入姓名"
@@ -81,10 +85,20 @@
           placeholder="輸入密碼"
           oninput="check(this, 'password')"
         />
+        <div class="password-rule"></div>
         <button class="signButton signupButton">註冊新帳戶</button>
+        <div style="display: flex; justify-content: center">
+          <img src="/image/error_icon.png" class="error-img2" />
+          <div class="wrong2 success"></div>
+        </div>
       </div>
-      <div class="wrong2 success"></div>
+
       <div class="goToSignUpOrIn goToSignIn">已經有帳戶了？點此登入</div>
+    </div>
+    <div class="signup-success">
+      <div class="bar"></div>
+      <div class="signup-success-message">註冊成功</div>
+      <div class="signup-success-message">3秒後跳轉至登入畫面</div>
     </div>
     <div class="space"></div>
     {% block content %}

@@ -21,6 +21,18 @@
               <span class="dot" onclick="currentSlide(2)"></span> -->
         </div>
       </div>
+      <div class="booking-success">
+        <div class="bar"></div>
+        <div class="booking-success-message">
+          已成功加入行程<img
+            class="booking-success-close"
+            src="/image/icon_close.png"
+          />
+        </div>
+        <div class="booking-success-message">
+          <a href="/booking">點此</a>至購物車
+        </div>
+      </div>
 
       <div class="profile">
         <div class="profile-text1"></div>
@@ -58,9 +70,16 @@
           </div>
           <div class="fieldPrice">
             <div class="fieldPrice-text1">導覽費用：</div>
-            <div class="fieldPrice-text2">新台幣 2000 元</div>
+            <div class="fieldPrice-text2">
+              新台幣 <span class="money">2000</span> 元
+            </div>
           </div>
           <button class="start"><div>開始預約行程</div></button>
+          <br />
+          <div style="display: flex; margin: 5px 20px">
+            <img src="/image/error_icon.png" class="error-image" />
+            <div class="error-message"></div>
+          </div>
         </div>
       </div>
     </div>

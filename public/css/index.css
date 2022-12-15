@@ -188,24 +188,6 @@ a {
 .cat {
   justify-content: flex-end;
 }
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #757575;
-  grid-area: footer;
-}
-.footer div {
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  font-weight: 700;
-  font-size: 16px;
-  height: 24px;
-  width: 234px;
-  line-height: 13px;
-  margin: 40px;
-}
 .fail {
   display: none;
   justify-content: center;

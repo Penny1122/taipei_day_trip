@@ -147,6 +147,7 @@ class orderStatusModel(Resource):
                 contact_name=i["contact_name"]
                 contact_email=i["contact_email"]
                 contact_phone=i["contact_phone"]
+                payment_time=i["paymentTime"]
                 status = i["status"]
                 list={
                     "attraction":{
@@ -165,6 +166,7 @@ class orderStatusModel(Resource):
                 "data":{
                     "number": orderNumber,
                     "price": total_price,
+                    "payment_time": payment_time,
                     "trip":data,
                     "contact": {
                         "name": contact_name,

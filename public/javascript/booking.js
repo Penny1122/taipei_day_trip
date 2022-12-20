@@ -133,7 +133,7 @@ async function payment(order, prime) {
       console.log(result.payment.message);
       document.location.href = `/thankyou?number=${result.number}`;
     } else {
-      console.log(result.payment.message);
+      console.log(data.message);
     }
   } catch (error) {
     console.log("error", error);

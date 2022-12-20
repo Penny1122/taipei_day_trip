@@ -22,15 +22,30 @@
         <div class="contact-info">您的聯絡資訊</div>
         <div class="field">
           <div>聯絡姓名：</div>
-          <input />
+          <input
+            type="text"
+            name="name"
+            class="field-input input-name"
+            oninput="check(this)"
+          />
         </div>
         <div class="field">
           <div>連絡信箱：</div>
-          <input />
+          <input
+            type="email"
+            name="email"
+            class="field-input input-email"
+            oninput="check(this)"
+          />
         </div>
         <div class="field">
           <div>手機號碼：</div>
-          <input />
+          <input
+            type="tel"
+            name="tel"
+            class="field-input input-phone"
+            oninput="check(this)"
+          />
         </div>
         <div class="field-notice">
           請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。
@@ -40,16 +55,16 @@
       <div class="payment">
         <div class="payment-title">信用卡付款資訊</div>
         <div class="field">
-          <div>卡片號碼：</div>
-          <input placeholder="**** **** **** ****" />
+          卡片號碼：
+          <div class="tpfield" id="card-number"></div>
         </div>
         <div class="field">
-          <div>過期時間：</div>
-          <input placeholder="MM/YY" />
+          過期時間：
+          <div class="tpfield" id="card-expiration-date"></div>
         </div>
         <div class="field">
-          <div>驗證密碼：</div>
-          <input placeholder="CVV" />
+          驗證密碼：
+          <div class="tpfield" id="card-ccv"></div>
         </div>
       </div>
       <hr />
@@ -62,5 +77,6 @@
 
   {% endblock %} {% block js %}
 </div>
+<script src="https://js.tappaysdk.com/sdk/tpdirect/v5.14.0"></script>
 <script src="/javascript/booking.js"></script>
 {% endblock %}

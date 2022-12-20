@@ -19,4 +19,13 @@ class secretKey():
         configKey=config["jwt_key"]
         key=configKey["key"]
         return key
+    def TapPay(self):
+        configTapPayKey=config["TapPay"]
+        TapPayKey={
+            "APP_ID":configTapPayKey["APP_ID"],
+            "App_Key":configTapPayKey["App_Key"],
+            "Merchant_ID":configTapPayKey["Merchant_ID"],
+            "Partner_Key":configTapPayKey["Partner_Key"]
+        }
+        return TapPayKey
 secretKey=secretKey()

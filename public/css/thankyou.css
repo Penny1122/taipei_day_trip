@@ -17,7 +17,7 @@ a {
   text-align: center;
   color: #666666;
 }
-.booking-success {
+.booking {
   /* display: none; */
   position: fixed;
   top: 80px;

@@ -30,9 +30,9 @@ def booking():
 @app.route("/thankyou")
 def thankyou():
 	return render_template("thankyou.html")
-@app.route("/member")
-def member():
-	return render_template("member.html")
+@app.route("/order/<orderId>")
+def member(orderId):
+	return render_template("order.html")
 
 
 api.add_resource(Search,"/api/attractions")

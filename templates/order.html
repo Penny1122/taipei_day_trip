@@ -1,0 +1,52 @@
+{% extends "index.html" %} {% block head %}
+<link rel="stylesheet" type="text/css" href="/css/order.css" />
+<title>我的訂單 - 台北一日遊</title>
+{% endblock %} {% block content %}
+<div class="container">
+  <div class="content">
+    <div class="user-name">您好，待預訂的行程如下：</div>
+    <div class="section">
+      <div class="order-box">
+        <span class="order-text">訂單編號</span>
+        <span class="order-text">付款日期</span>
+        <span class="order-text">合計</span>
+        <span class="order-text">訂單狀態</span>
+        <span class="order-text"></span>
+      </div>
+      <hr />
+      <div class="order-box test">
+        <span class="info-text orderId"></span>
+        <span class="info-text payment-time"></span>
+        <span class="info-text total-price"></span>
+        <span class="info-text status"></span>
+        <span class="info-text read"
+          ><button class="check"><div>查閱</div></button></span
+        >
+      </div>
+      <div class="detail">
+        <!-- <div class="detail-box">
+          <div class="image-block">
+            <img class="image" src="/image/cat.jpg" />
+          </div>
+          <div class="info">
+            <div class="name">台北一日遊：</div>
+            <div class="frame">日期：</div>
+            <div class="frame">時間：</div>
+            <div class="frame">費用：</div>
+            <div class="frame">地點：</div>
+          </div>
+        </div> -->
+      </div>
+      <div class="contact-form">
+        <!-- <div class="contact-info">您的聯絡資訊</div>
+        <div class="field contact-name">聯絡姓名：</div>
+        <div class="field contact-email">連絡信箱：</div>
+        <div class="field contact-phone">手機號碼：</div> -->
+      </div>
+    </div>
+
+    {% endblock %} {% block js %}
+  </div>
+  <script src="/javascript/order.js"></script>
+  {% endblock %}
+</div>

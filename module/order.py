@@ -49,7 +49,7 @@ class orderModel(Resource):
         if not checkName or not checkEmail or not checkPhone:
             response=jsonify({
             "error":True,
-            "message":"聯絡資訊未填寫完整，訂單建立失敗"
+            "message":"請填寫聯絡資訊。"
             })
             response.status_code="400"
             return response

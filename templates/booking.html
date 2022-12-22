@@ -1,9 +1,17 @@
 {% extends "index.html" %} {% block head %}
 <link rel="stylesheet" type="text/css" href="/css/booking.css" />
-<title>我的預定行程</title>
+<title>我的預定行程 - 台北一日遊</title>
 {% endblock %} {% block content %}
 <div class="container">
   <div class="content">
+    <div class="ordering">
+      <div class="bar"></div>
+      <img class="order-close" src="/image/icon_close.png" />
+      <div class="text-box">
+        <img src="/image/error_icon.png" class="error-img" />
+        <div class="order-message text2"></div>
+      </div>
+    </div>
     <div class="user-name">您好，待預訂的行程如下：</div>
     <div class="detail">
       <!-- <div class="section">

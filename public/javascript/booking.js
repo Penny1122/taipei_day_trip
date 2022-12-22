@@ -9,6 +9,9 @@ const inputEmail = document.querySelector(".input-email");
 const inputPhone = document.querySelector(".input-phone");
 const checkCard = document.querySelector(".check-card");
 const checkCardMonth = document.querySelector(".check-card-month");
+const ordering = document.querySelector(".ordering");
+const bookingText = document.querySelector(".text2");
+const orderCloseImg = document.querySelector(".order-close");
 let totalTrip = [];
 let totalPrice = 0;
 
@@ -99,7 +102,9 @@ confirmBtn.addEventListener("click", function (event) {
 
   // 確認是否可以 getPrime
   if (tappayStatus.canGetPrime === false) {
-    alert("can not get prime");
+    ordering.style.display = "block";
+    bookingText.textContent = "信用卡資訊錯誤";
+    // alert("can not get prime");
     return;
   }
 
@@ -110,7 +115,6 @@ confirmBtn.addEventListener("click", function (event) {
       return;
     }
     console.log(result.card.prime);
-
     // send prime to your server, to pay with Pay by Prime API .
     // Pay By Prime Docs: https://docs.tappaysdk.com/tutorial/zh/back.html#pay-by-prime-api
     payment(order, result.card.prime);
@@ -127,18 +131,27 @@ async function payment(order, prime) {
         order: order,
       }),
     });
+
     const data = await response.json();
+    let myStatus = response.status;
+    console.log(myStatus);
     const result = data.data;
-    if (result) {
+    if (myStatus == 200) {
       console.log(result.payment.message);
       document.location.href = `/thankyou?number=${result.number}`;
     } else {
+      ordering.style.display = "block";
+      bookingText.textContent = data.message;
       console.log(data.message);
     }
   } catch (error) {
     console.log("error", error);
   }
 }
+
+orderCloseImg.addEventListener("click", function () {
+  ordering.style.display = "none";
+});
 
 async function deleteInfo(id, date, time) {
   try {

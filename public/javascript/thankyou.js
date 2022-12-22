@@ -19,7 +19,7 @@ async function getOrderInfo() {
     console.log(clist.status);
     if (clist.status == "success") {
       text1.textContent = "行程訂購成功";
-      text2.textContent = `訂單標號：${orderId}`;
+      text2.textContent = `訂單編號：${orderId}`;
       text3.textContent = "5秒後跳轉至訂單頁面";
       setTimeout(`document.location.href = '/order/${orderId}'`, 5000);
     } else {

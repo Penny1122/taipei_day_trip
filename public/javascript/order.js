@@ -36,13 +36,10 @@ async function getOrderInfo() {
 }
 
 function getMoreOrderInfo(result) {
-  console.log(result);
   const trip = result.trip;
   let information = "";
   trip.forEach((i) => {
     let time = i.time == "morning" ? "早上 9 點到 12 點" : "下午 1 點到 5 點";
-    console.log(time);
-    console.log(i.attraction.image);
     information += `
     <div class="detail-box">
         <div class="image-block">
@@ -65,7 +62,6 @@ function getMoreOrderInfo(result) {
   <div class="field contact-phone">手機號碼：${result.contact.phone}</div>`;
   const detail = document.querySelector(".detail");
   const contactForm = document.querySelector(".contact-form");
-  console.log(information);
   detail.innerHTML = information;
   contactForm.innerHTML = contact;
 }

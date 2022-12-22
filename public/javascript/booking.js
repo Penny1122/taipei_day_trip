@@ -111,10 +111,10 @@ confirmBtn.addEventListener("click", function (event) {
   // Get prime
   TPDirect.card.getPrime((result) => {
     if (result.status !== 0) {
-      alert("get prime error " + result.msg);
+      ordering.style.display = "block";
+      bookingText.textContent = "信用卡資訊錯誤";
       return;
     }
-    console.log(result.card.prime);
     // send prime to your server, to pay with Pay by Prime API .
     // Pay By Prime Docs: https://docs.tappaysdk.com/tutorial/zh/back.html#pay-by-prime-api
     payment(order, result.card.prime);
@@ -134,15 +134,12 @@ async function payment(order, prime) {
 
     const data = await response.json();
     let myStatus = response.status;
-    console.log(myStatus);
     const result = data.data;
     if (myStatus == 200) {
-      console.log(result.payment.message);
       document.location.href = `/thankyou?number=${result.number}`;
     } else {
       ordering.style.display = "block";
       bookingText.textContent = data.message;
-      console.log(data.message);
     }
   } catch (error) {
     console.log("error", error);
@@ -258,45 +255,4 @@ TPDirect.card.setup({
     beginIndex: 6,
     endIndex: 11,
   },
-});
-TPDirect.card.onUpdate(function (update) {
-  // update.canGetPrime === true
-  // --> you can call TPDirect.card.getPrime()
-  if (update.canGetPrime) {
-    // Enable submit Button to get prime.
-    // submitButton.removeAttribute('disabled')
-  } else {
-    // Disable submit Button to get prime.
-    // submitButton.setAttribute('disabled', true)
-  }
-
-  // cardTypes = ['mastercard', 'visa', 'jcb', 'amex', 'unknown']
-  if (update.cardType === "visa") {
-    // Handle card type visa.
-  }
-
-  // number 欄位是錯誤的
-  if (update.status.number === 2) {
-    // setNumberFormGroupToError()
-  } else if (update.status.number === 0) {
-    // setNumberFormGroupToSuccess()
-  } else {
-    // setNumberFormGroupToNormal()
-  }
-
-  if (update.status.expiry === 2) {
-    // setNumberFormGroupToError()
-  } else if (update.status.expiry === 0) {
-    // setNumberFormGroupToSuccess()
-  } else {
-    // setNumberFormGroupToNormal()
-  }
-
-  if (update.status.ccv === 2) {
-    // setNumberFormGroupToError()
-  } else if (update.status.ccv === 0) {
-    // setNumberFormGroupToSuccess()
-  } else {
-    // setNumberFormGroupToNormal()
-  }
 });

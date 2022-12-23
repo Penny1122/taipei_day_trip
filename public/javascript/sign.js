@@ -2,6 +2,9 @@ const sign = document.querySelector(".sign");
 const signin = document.querySelector(".signin");
 const signup = document.querySelector(".signup");
 const signout = document.querySelector(".signout");
+const memberIcon = document.querySelector(".memberIcon");
+const memberBox = document.querySelector(".member-box");
+const history = document.querySelector(".history");
 const order = document.querySelector(".order");
 const goToSignUp = document.querySelector(".goToSignUp");
 const goToSignIn = document.querySelector(".goToSignIn");
@@ -20,6 +23,7 @@ const passwordRule = document.querySelector(".password-rule");
 const errorImg1 = document.querySelector(".error-img1");
 const errorImg2 = document.querySelector(".error-img2");
 const signupSuccess = document.querySelector(".signup-success");
+let id;
 let member;
 let email;
 let userStatus = false;
@@ -51,15 +55,16 @@ async function getUserStatus() {
     const data = await response.json();
     const clist = data.data;
     if (clist != null) {
+      id = clist.id;
       member = clist.name;
       email = clist.email;
       sign.classList.add("none");
-      signout.classList.remove("none");
+      memberIcon.classList.remove("none");
       userStatus = true;
     } else {
       sign.classList.remove("hidden");
       sign.classList.remove("none");
-      signout.classList.add("none");
+      memberIcon.classList.add("none");
       userStatus = false;
     }
   } catch (error) {
@@ -172,4 +177,14 @@ signout.addEventListener("click", async function () {
   } catch (error) {
     console.log("error", error);
   }
+});
+
+memberIcon.onmousemove = function () {
+  memberBox.style.display = "block";
+};
+document.addEventListener("click", function () {
+  memberBox.style.display = "none";
+});
+history.addEventListener("click", function () {
+  document.location.href = `/myorder/${id}`;
 });

@@ -35,6 +35,28 @@ body {
   display: flex;
   justify-content: flex-end;
   flex: auto;
+  position: relative;
+}
+.member-box {
+  background-color: #ffffff;
+  position: absolute;
+  top: 100%;
+  border: solid 1px #e8e8e8;
+  border-radius: 5px;
+  /* right: 10px; */
+}
+.member-box div {
+  color: #666666;
+  font-weight: 500;
+  padding: 5px;
+  margin: 5px;
+  font-size: 14px;
+  line-height: 13px;
+}
+.member-box div:hover {
+  background: #e8e8e8;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .Frame1 {
   cursor: pointer;
@@ -47,6 +69,10 @@ body {
   font-size: 16px;
   line-height: 13px;
   height: 14px;
+}
+.Frame1 img {
+  width: 25px;
+  height: 25px;
 }
 .space {
   width: 100%;

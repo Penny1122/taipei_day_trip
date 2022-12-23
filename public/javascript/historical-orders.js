@@ -3,37 +3,54 @@ const orderId = document.querySelector(".orderId");
 const paymentTime = document.querySelector(".payment-time");
 const totalPrice = document.querySelector(".total-price");
 const orderStatus = document.querySelector(".status");
-const checkOrder = document.querySelector(".check");
+const test = document.querySelector(".test");
 let path = location.pathname;
 
 window.onload = async function () {
   await getUserStatus();
   if (userStatus) {
     userName.textContent = `您好，${member}，您的行程如下：`;
-    getOrderInfo();
-  } else {
-    window.location.href = "/";
+    getAllOrderStatus();
   }
 };
 
-async function getOrderInfo() {
+async function getAllOrderStatus() {
   try {
     const response = await fetch(`/api${path}`);
     const data = await response.json();
     const result = data.data;
-    let paymentStatus = result.status == "success" ? "付款成功" : "付款失敗";
-    orderId.textContent = result.number;
-    paymentTime.textContent = result.payment_time;
-    totalPrice.textContent = result.price;
-    orderStatus.textContent = paymentStatus;
+    let information = "";
+    result.forEach((i) => {
+      let paymentStatus = i.status == "success" ? "付款成功" : "付款失敗";
+      information += `
+        <div class="order-box2">
+        <span class="info-text orderId">${i.number}</span>
+        <span class="info-text payment-time">${i.payment_time}</span>
+        <span class="info-text total-price">${i.total_price}</span>
+        <span class="info-text status">${paymentStatus}</span>
+        <span class="info-text read">
+        <button class="checkOrder"><div>查看</div></button></span>
+        </div>
+        <div class="detail"></div>
+        <hr/>`;
+    });
+    test.innerHTML = information;
+    const checkOrder = document.querySelectorAll(".checkOrder");
+    checkOrder.forEach((e, index) => {
+      console.log(e);
+      e.addEventListener("click", function () {
+        getMoreOrderInfo(result[index]);
+      });
+    });
   } catch (error) {
     console.log("error", error);
   }
 }
-
 function getMoreOrderInfo(result) {
+  console.log("OK");
   const trip = result.trip;
   let information = "";
+  console.log(trip);
   trip.forEach((i) => {
     let time = i.time == "morning" ? "早上 9 點到 12 點" : "下午 1 點到 5 點";
     information += `

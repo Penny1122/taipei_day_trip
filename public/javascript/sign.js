@@ -21,20 +21,22 @@ const errorImg1 = document.querySelector(".error-img1");
 const errorImg2 = document.querySelector(".error-img2");
 const signupSuccess = document.querySelector(".signup-success");
 let member;
+let email;
 let userStatus = false;
 
 getUserStatus();
 
-function check(element, type) {
+function check(element) {
   let rule;
-  if (type == "email") {
+  if (element.type == "email") {
     rule = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-  } else if (type == "password") {
+  } else if (element.name == "password") {
     rule = /[0-9a-zA-z]{6,12}/;
-  } else if (type == "name") {
+  } else if (element.name == "name") {
     rule = /^[\u4e00-\u9fa5_a-zA-Z0-9_]{2,20}$/;
+  } else if (element.name == "tel") {
+    rule = /^(09)[0-9]{8}$/;
   }
-
   let regex = new RegExp(rule);
   if (regex.test(element.value)) {
     element.style.backgroundImage = "url(/image/correct_icon.png)";
@@ -50,6 +52,7 @@ async function getUserStatus() {
     const clist = data.data;
     if (clist != null) {
       member = clist.name;
+      email = clist.email;
       sign.classList.add("none");
       signout.classList.remove("none");
       userStatus = true;

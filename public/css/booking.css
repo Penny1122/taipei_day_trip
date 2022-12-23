@@ -55,7 +55,6 @@ a {
   margin-left: 22px;
 }
 .info div,
-.field div,
 .field-notice {
   padding: 5px 0;
 }
@@ -83,25 +82,27 @@ hr {
   padding: 0;
   border: 1px solid #e8e8e8;
 }
-.field div {
+.field {
+  margin-bottom: 15px;
+  font-weight: 500;
   display: flex;
   align-items: center;
   font-size: 16px;
   line-height: 13px;
   color: #666666;
 }
-.field {
-  margin-bottom: 15px;
-  font-weight: 500;
-  display: flex;
-}
-.field input {
+.field input,
+.tpfield {
   background: #ffffff;
   border: 1px solid #e8e8e8;
   border-radius: 5px;
   padding: 10px;
   width: 200px;
   height: 38px;
+  background-position: right;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-size: 25px;
 }
 .field input::placeholder {
   font-weight: 500;
@@ -150,6 +151,56 @@ hr {
 }
 .information {
   display: none;
+}
+
+.order-message {
+  margin: 20px 0;
+  padding: 5px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 13px;
+  text-align: center;
+  color: #666666;
+}
+.ordering {
+  display: none;
+  position: fixed;
+  top: 80px;
+  right: 50%;
+  transform: translate(50%, 0);
+  width: 340px;
+  background: #ffffff;
+  box-shadow: 0px 4px 60px #aaaaaa;
+  border-radius: 6px;
+  z-index: 250;
+  animation-name: booking-success;
+  animation-duration: 0.5s;
+}
+.order-close {
+  cursor: pointer;
+  position: absolute;
+  margin: 5px;
+  width: 16px;
+  height: 16px;
+  top: 10px;
+  right: 5px;
+}
+.text-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.error-img {
+  width: 25px;
+  height: 25px;
+}
+@keyframes booking-success {
+  from {
+    top: 0px;
+  }
+  to {
+    top: 80px;
+  }
 }
 @media (max-width: 1200px) {
   .container {

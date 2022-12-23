@@ -5,7 +5,7 @@ from flask_restful import Resource
 from config import secretKey
 import jwt
 
-key=secretKey.jwtconfig()
+JWTkey=secretKey.jwtconfig()
 
 connection=database.DBconnect().get_connection()
 cursor=connection.cursor()
@@ -24,7 +24,7 @@ class bookingModel(Resource):
             response.status_code="403"
             response.headers["Access-Control-Allow-Origin"] = "*"
             return response
-        decoded_jwt=jwt.decode(JWTcookie, key, algorithms="HS256")
+        decoded_jwt=jwt.decode(JWTcookie, JWTkey, algorithms="HS256")
         userId=(decoded_jwt["id"])
         attractionId=request.json["attractionId"]
         date=request.json["date"]
@@ -63,7 +63,6 @@ class bookingModel(Resource):
                 "message": "伺服器內部錯誤"
             })
             response.status_code="500"
-            response.headers["Access-Control-Allow-Origin"] = "*"
             return response
         finally:
             cursor.close()
@@ -77,9 +76,8 @@ class bookingModel(Resource):
                 "message": "未登入系統"
             })
             response.status_code="403"
-            response.headers["Access-Control-Allow-Origin"] = "*"
             return response
-        decoded_jwt=jwt.decode(JWTcookie, key, algorithms="HS256")
+        decoded_jwt=jwt.decode(JWTcookie, JWTkey, algorithms="HS256")
         userId=(decoded_jwt["id"])
         try:    
             connection=database.DBconnect().get_connection()
@@ -90,8 +88,6 @@ class bookingModel(Resource):
                 response=jsonify({
                     "data":None
             })
-                response.headers["Content-Type"] = "application/json"
-                response.headers["Access-Control-Allow-Origin"] = "*"
                 return response
             data=[]
             for i in result:
@@ -110,8 +106,6 @@ class bookingModel(Resource):
             response=jsonify({
                     "data":data
             })
-            response.headers["Content-Type"] = "application/json"
-            response.headers["Access-Control-Allow-Origin"] = "*"
             return response
         except:
             response=jsonify({
@@ -119,7 +113,6 @@ class bookingModel(Resource):
                 "message": "伺服器內部錯誤"
             })
             response.status_code="500"
-            response.headers["Access-Control-Allow-Origin"] = "*"
             return response
         finally:
             cursor.close()
@@ -133,9 +126,8 @@ class bookingModel(Resource):
                 "message": "未登入系統"
             })
             response.status_code="403"
-            response.headers["Access-Control-Allow-Origin"] = "*"
             return response
-        decoded_jwt=jwt.decode(JWTcookie, key, algorithms="HS256")
+        decoded_jwt=jwt.decode(JWTcookie, JWTkey, algorithms="HS256")
         userId=(decoded_jwt["id"])
         attractionId=request.json["attractionId"]
         date=request.json["date"]
@@ -155,7 +147,6 @@ class bookingModel(Resource):
                 "message": "伺服器內部錯誤"
             })
             response.status_code="500"
-            response.headers["Access-Control-Allow-Origin"] = "*"
             return response
         finally:
             cursor.close()

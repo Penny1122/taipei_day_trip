@@ -13,12 +13,21 @@ const errorMessage = document.querySelector(".error-message");
 const errorImage = document.querySelector(".error-image");
 const bookingSuccess = document.querySelector(".booking-success");
 const bookingClose = document.querySelector(".booking-success-close");
-
+const chooseDate = document.querySelector(".input");
 let slideIndex = 0;
 let path = location.pathname;
+let today = new Date();
 
 // console.log(path);
-window.onload = getInfo();
+window.onload = function () {
+  getInfo();
+  getToday();
+};
+
+function getToday() {
+  today = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+  chooseDate.min = today;
+}
 
 async function getInfo() {
   try {

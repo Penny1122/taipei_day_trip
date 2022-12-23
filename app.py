@@ -6,6 +6,8 @@ sys.path.append("module")
 from module.attractions import Search, SearchID, SearchCategory
 from module.users import userSignup,userAuth
 from module.booking import bookingModel
+from module.order import orderModel, orderStatusModel
+
 
 app=Flask(__name__,static_folder="public",static_url_path="/")
 app.config["JSON_AS_ASCII"]=False
@@ -28,9 +30,9 @@ def booking():
 @app.route("/thankyou")
 def thankyou():
 	return render_template("thankyou.html")
-@app.route("/member")
-def member():
-	return render_template("member.html")
+@app.route("/order/<orderId>")
+def member(orderId):
+	return render_template("order.html")
 
 
 api.add_resource(Search,"/api/attractions")
@@ -39,5 +41,7 @@ api.add_resource(SearchCategory,"/api/categories")
 api.add_resource(userSignup, "/api/user")
 api.add_resource(userAuth, "/api/user/auth")
 api.add_resource(bookingModel, "/api/booking")
+api.add_resource(orderModel, "/api/orders")
+api.add_resource(orderStatusModel, "/api/order/<orderNumber>")
 
 app.run(host="0.0.0.0", port=3000, debug=True)

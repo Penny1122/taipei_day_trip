@@ -33,6 +33,9 @@ def thankyou():
 @app.route("/order/<orderId>")
 def order(orderId):
 	return render_template("order.html")
+@app.route("/member")
+def member():
+	return render_template("member.html")
 @app.route("/myorder/<userId>")
 def allorder(userId):
 	return render_template("historical-orders.html")

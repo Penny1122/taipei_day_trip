@@ -119,6 +119,7 @@ async function booking(attractionId, date, time, price) {
     }
     const data = await response.json();
     if (data.ok) {
+      getCartStatus();
       errorImage.style.display = "none";
       errorMessage.textContent = "";
       bookingSuccess.style.display = "block";

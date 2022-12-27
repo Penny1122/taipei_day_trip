@@ -4,12 +4,13 @@ const paymentTime = document.querySelector(".payment-time");
 const totalPrice = document.querySelector(".total-price");
 const orderStatus = document.querySelector(".status");
 const test = document.querySelector(".test");
+const detail = document.querySelectorAll(".detail");
 let path = location.pathname;
 
 window.onload = async function () {
   await getUserStatus();
   if (userStatus) {
-    userName.textContent = `您好，${member}，您的行程如下：`;
+    userName.textContent = `您好，${member}，您的歷史訂單如下：`;
     getAllOrderStatus();
   }
 };
@@ -29,7 +30,9 @@ async function getAllOrderStatus() {
         <span class="info-text total-price">${i.total_price}</span>
         <span class="info-text status">${paymentStatus}</span>
         <span class="info-text read">
-        <button class="checkOrder"><div>查看</div></button></span>
+          <button class="checkOrder">查看</button>
+          <button class="closeOrder none">收起</button>
+        </span>
         </div>
         <div class="detail"></div>
         <hr/>`;
@@ -37,44 +40,54 @@ async function getAllOrderStatus() {
     test.innerHTML = information;
     const checkOrder = document.querySelectorAll(".checkOrder");
     checkOrder.forEach((e, index) => {
-      console.log(e);
       e.addEventListener("click", function () {
-        getMoreOrderInfo(result[index]);
+        checkOrder[index].style.display = "none";
+        getMoreOrderInfo(result[index], index, e);
       });
     });
   } catch (error) {
     console.log("error", error);
   }
 }
-function getMoreOrderInfo(result) {
-  console.log("OK");
+
+function getMoreOrderInfo(result, index, e) {
   const trip = result.trip;
   let information = "";
-  console.log(trip);
   trip.forEach((i) => {
     let time = i.time == "morning" ? "早上 9 點到 12 點" : "下午 1 點到 5 點";
     information += `
     <div class="detail-box">
+      <a href="/attraction/${i.attraction.id}">
         <div class="image-block">
-            <img class="image" src=${i.attraction.image} />
+          <img class="image" src=${i.attraction.image} />
         </div>
-        <div class="info">
+      </a>
+      <div class="info">
             <div class="name">台北一日遊：${i.attraction.name}</div>
             <div class="frame">日期：${i.date}</div>
             <div class="frame">時間：${time}</div>
             <div class="frame">費用：${i.price}</div>
             <div class="frame">地點：${i.attraction.address}</div>
-        </div>
+      </div>
     </div>
     <hr/>`;
   });
   let contact = `
+  <div class="contact-form">
   <div class="contact-info">您的聯絡資訊</div>
   <div class="field contact-name">聯絡姓名：${result.contact.name}</div>
   <div class="field contact-email">連絡信箱：${result.contact.email}</div>
-  <div class="field contact-phone">手機號碼：${result.contact.phone}</div>`;
-  const detail = document.querySelector(".detail");
-  const contactForm = document.querySelector(".contact-form");
-  detail.innerHTML = information;
-  contactForm.innerHTML = contact;
+  <div class="field contact-phone">手機號碼：${result.contact.phone}</div>
+  </div>`;
+  const detail = document.querySelectorAll(".detail");
+  const closeOrder = document.querySelectorAll(".closeOrder");
+  closeOrder[index].style.display = "block";
+  detail[index].style.display = "block";
+  detail[index].innerHTML = information + contact;
+
+  closeOrder[index].addEventListener("click", function () {
+    closeOrder[index].style.display = "none";
+    e.style.display = "flex";
+    detail[index].style.display = "none";
+  });
 }

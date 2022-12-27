@@ -69,24 +69,34 @@ hr {
   text-align: center;
   color: #666666;
 }
-.checkOrder {
+.read {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkOrder,
+.closeOrder {
   cursor: pointer;
+  border: 2px solid#448899;
   padding: 10px;
   background: #448899;
   border-radius: 5px;
   border-style: none;
-}
-.checkOrder div {
-  display: flex;
-  /* align-items: center; */
-  justify-content: center;
   font-weight: 400;
   font-size: 19px;
   line-height: 16px;
-  display: flex;
-  align-items: center;
   text-align: center;
   color: #ffffff;
+}
+.checkOrder:hover,
+.closeOrder:hover {
+  border: 2px solid#448899;
+  background: #7ad9f0;
+  color: black;
+  font-weight: 700;
+}
+.detail {
+  display: none;
 }
 .detail-box {
   display: flex;
@@ -146,6 +156,9 @@ hr {
   font-size: 16px;
   line-height: 13px;
   color: #666666;
+}
+.none {
+  display: none;
 }
 @media (max-width: 1200px) {
   .container {

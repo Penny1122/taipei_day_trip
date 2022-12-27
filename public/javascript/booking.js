@@ -34,6 +34,7 @@ async function getBookingInfo() {
     const response = await fetch("/api/booking");
     const data = await response.json();
     const result = data.data;
+    console.log(result);
     if (result != null) {
       let information = "";
       for (let i = 0; i < result.length; i++) {

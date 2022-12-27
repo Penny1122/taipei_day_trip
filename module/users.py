@@ -135,7 +135,6 @@ class userAuth(Resource):
             response.headers["Access-Control-Allow-Origin"] = "*"
             return response   
         decoded_jwt=jwt.decode(JWTcookie, key, algorithms="HS256")
-        # print(decoded_jwt)
         response =jsonify({
             "data":decoded_jwt
         })

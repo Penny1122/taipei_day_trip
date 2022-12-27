@@ -23,12 +23,14 @@ const passwordRule = document.querySelector(".password-rule");
 const errorImg1 = document.querySelector(".error-img1");
 const errorImg2 = document.querySelector(".error-img2");
 const signupSuccess = document.querySelector(".signup-success");
+const count = document.querySelector(".count");
 let id;
 let member;
 let email;
 let userStatus = false;
 
 getUserStatus();
+getCartStatus();
 
 function check(element) {
   let rule;
@@ -67,6 +69,15 @@ async function getUserStatus() {
       memberIcon.classList.add("none");
       userStatus = false;
     }
+  } catch (error) {
+    console.log("error", error);
+  }
+}
+async function getCartStatus() {
+  try {
+    const response = await fetch("/api/booking");
+    const data = await response.json();
+    count.textContent = data.count;
   } catch (error) {
     console.log("error", error);
   }
@@ -181,10 +192,25 @@ signout.addEventListener("click", async function () {
 
 memberIcon.onmousemove = function () {
   memberBox.style.display = "block";
+  memberIcon.style.backgroundImage = "url('/image/member2.icon.png')";
+  memberIcon.style.transform = "scale(1.3)";
+  memberIcon.style.transition = "all 0.5s ease 0s";
 };
-document.addEventListener("click", function () {
+memberIcon.onmouseout = function () {
+  memberIcon.style.transform = "scale(1.0)";
+  memberIcon.style.backgroundImage = "url('/image/member.icon.png')";
+};
+memberBox.onmousemove = function () {
+  memberIcon.style.backgroundImage = "url('/image/member2.icon.png')";
+  memberIcon.style.transform = "scale(1.3)";
+  memberBox.style.display = "block";
+};
+memberBox.onmouseout = function () {
   memberBox.style.display = "none";
-});
+  memberIcon.style.transform = "scale(1.0)";
+  memberIcon.style.backgroundImage = "url('/image/member.icon.png')";
+};
+
 history.addEventListener("click", function () {
   document.location.href = `/myorder/${id}`;
 });

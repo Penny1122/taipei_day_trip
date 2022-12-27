@@ -102,6 +102,10 @@ hr {
   display: flex;
   margin: 40px 100px;
 }
+.image:hover {
+  transform: scale(1.1);
+  transition: all 0.5s ease 0s;
+}
 .info {
   margin-left: 22px;
 }

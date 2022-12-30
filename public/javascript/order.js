@@ -26,6 +26,10 @@ async function getOrderInfo() {
     paymentTime.textContent = result.payment_time;
     totalPrice.textContent = result.price;
     orderStatus.textContent = paymentStatus;
+    checkOrder.addEventListener("click", function () {
+      getMoreOrderInfo(result);
+      checkOrder.style.display = "none";
+    });
   } catch (error) {
     console.log("error", error);
   }

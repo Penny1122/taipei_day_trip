@@ -37,7 +37,7 @@ async function getAllOrderStatus() {
           <button class="closeOrder none">收起</button>
         </span>
         </div>
-        <div class="detail"></div>
+        <div class="detail none"></div>
         <hr/>`;
       });
       test.innerHTML = information;

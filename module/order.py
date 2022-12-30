@@ -210,7 +210,6 @@ class historicalOrderModel(Resource):
                 totalList=[]
                 for i in result:
                     orderId = i["orderId"]
-                    print(orderId)
                     cursor.execute("SELECT order_form.*, attractions.id, attractions.name, attractions.address, attractions.images FROM order_form INNER JOIN attractions ON attractions.id=order_form.attractionId WHERE order_form.userId =%s AND order_form.orderId = %s",[userNumber,orderId])
                     clist=cursor.fetchall()
                     if clist == []:
@@ -251,7 +250,6 @@ class historicalOrderModel(Resource):
                         },
                         "status": i["status"]
                     }
-                    print(list2)
                     totalList.append(list2)
 
                     response=jsonify({

@@ -70,7 +70,6 @@ class userAuth(Resource):
         password=request.json["password"]
         check_email=valid_email(email)
         check_password=valid_password(password)
-        # print(checkPassword)
         if check_email == None or check_password == None: 
             response=jsonify({
             "error":True,
@@ -127,7 +126,6 @@ class userAuth(Resource):
 
     def get(self):
         JWTcookie = request.cookies.get("token")
-        # print(JWTcookie)
         if JWTcookie == None:
             response=jsonify({
                 "data":None

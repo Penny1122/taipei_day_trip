@@ -102,6 +102,7 @@ a {
 .change-password-button {
   margin-left: 200px;
   margin-top: 20px;
+  margin-bottom: 20px;
   cursor: pointer;
   padding: 10px;
   background: #448899;
@@ -159,4 +160,23 @@ a {
 hr {
   margin: 0 10px 10px 10px;
   border: 1px solid #e8e8e8;
+}
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr 95% 1fr;
+  }
+  .section {
+    margin: 40px 10px;
+  }
+}
+@media (max-width: 600px) {
+  .container {
+    grid-template-columns: 1fr 100% 1fr;
+  }
+  .account-list {
+    display: none;
+  }
+  .field input {
+    width: 100px;
+  }
 }

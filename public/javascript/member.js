@@ -14,8 +14,6 @@ const memberSystem = document.querySelector(".member-system");
 
 window.onload = async function () {
   await getUserStatus();
-  console.log(userStatus);
-  console.log(email);
   if (userStatus) {
     accountInfo.textContent = `　帳號　：　${email}`;
     inputName.value = member;

@@ -164,6 +164,13 @@ hr {
 .none {
   display: none;
 }
+.test {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+  margin: 20px 40px;
+}
 @media (max-width: 1200px) {
   .container {
     grid-template-columns: 1fr 95% 1fr;

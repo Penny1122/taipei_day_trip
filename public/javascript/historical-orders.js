@@ -20,10 +20,13 @@ async function getAllOrderStatus() {
     const response = await fetch(`/api${path}`);
     const data = await response.json();
     const result = data.data;
-    let information = "";
-    result.forEach((i) => {
-      let paymentStatus = i.status == "success" ? "付款成功" : "付款失敗";
-      information += `
+    if (result == null) {
+      test.textContent = "目前尚無歷史訂單";
+    } else {
+      let information = "";
+      result.forEach((i) => {
+        let paymentStatus = i.status == "success" ? "付款成功" : "付款失敗";
+        information += `
         <div class="order-box2">
         <span class="info-text orderId">${i.number}</span>
         <span class="info-text payment-time">${i.payment_time}</span>
@@ -36,15 +39,16 @@ async function getAllOrderStatus() {
         </div>
         <div class="detail"></div>
         <hr/>`;
-    });
-    test.innerHTML = information;
-    const checkOrder = document.querySelectorAll(".checkOrder");
-    checkOrder.forEach((e, index) => {
-      e.addEventListener("click", function () {
-        checkOrder[index].style.display = "none";
-        getMoreOrderInfo(result[index], index, e);
       });
-    });
+      test.innerHTML = information;
+      const checkOrder = document.querySelectorAll(".checkOrder");
+      checkOrder.forEach((e, index) => {
+        e.addEventListener("click", function () {
+          checkOrder[index].style.display = "none";
+          getMoreOrderInfo(result[index], index, e);
+        });
+      });
+    }
   } catch (error) {
     console.log("error", error);
   }

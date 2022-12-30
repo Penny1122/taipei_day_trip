@@ -4,7 +4,7 @@ const signup = document.querySelector(".signup");
 const signout = document.querySelector(".signout");
 const memberIcon = document.querySelector(".memberIcon");
 const memberBox = document.querySelector(".member-box");
-const history = document.querySelector(".history");
+const history = document.querySelectorAll(".history");
 const order = document.querySelector(".order");
 const goToSignUp = document.querySelector(".goToSignUp");
 const goToSignIn = document.querySelector(".goToSignIn");
@@ -78,6 +78,9 @@ async function getCartStatus() {
     const response = await fetch("/api/booking");
     const data = await response.json();
     count.textContent = data.count;
+    if (data.count > 0) {
+      count.style.padding = "1px 5px";
+    }
   } catch (error) {
     console.log("error", error);
   }
@@ -210,7 +213,8 @@ memberBox.onmouseout = function () {
   memberIcon.style.transform = "scale(1.0)";
   memberIcon.style.backgroundImage = "url('/image/member.icon.png')";
 };
-
-history.addEventListener("click", function () {
-  document.location.href = `/myorder/${id}`;
+history.forEach((e) => {
+  e.addEventListener("click", function () {
+    document.location.href = `/myorder/${id}`;
+  });
 });

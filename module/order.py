@@ -6,7 +6,8 @@ from config import secretKey
 import jwt
 from datetime import *
 import requests
-import re
+from verify import *
+# import re
 
 JWTkey=secretKey.jwtconfig()
 TapPayKey = secretKey.TapPay()
@@ -30,7 +31,7 @@ class orderModel(Resource):
             response.status_code="403"
             return response
         decoded_jwt=jwt.decode(JWTcookie, JWTkey, algorithms="HS256")
-        userId=(decoded_jwt["id"])
+        userId=decoded_jwt["id"]
         tz = timezone(timedelta(hours=+8))
         now = datetime.now(tz)
         payment_time = now.strftime("%Y-%m-%d %H:%M:%S")
@@ -43,10 +44,10 @@ class orderModel(Resource):
         contact_name = contact["name"]
         contact_email = contact["email"]
         contact_phone = contact["phone"]
-        checkName=re.match("^[\u4e00-\u9fa5_a-zA-Z0-9_]{2,20}$",contact_name)
-        checkEmail=re.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",contact_email)
-        checkPhone=re.match("^(09)[0-9]{8}$",contact_phone)
-        if not checkName or not checkEmail or not checkPhone:
+        check_name=valid_name(contact_name)
+        check_email=valid_email(contact_email)
+        check_phone=valid_phone(contact_phone)
+        if not check_name or not check_email or not check_phone:
             response=jsonify({
             "error":True,
             "message":"請填寫聯絡資訊。"

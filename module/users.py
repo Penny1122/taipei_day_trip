@@ -1,10 +1,10 @@
 import database
-import re
 import jwt
 from flask import *
 from flask_bcrypt import *
 from flask_restful import Resource
 from config import secretKey
+from verify import *
 
 key=secretKey.jwtconfig()
 
@@ -20,10 +20,10 @@ class userSignup(Resource):
         email=request.json["email"]
         password=request.json["password"]
 
-        checkName=re.match("^[\u4e00-\u9fa5_a-zA-Z0-9_]{2,20}$",name)
-        checkEmail=re.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",email)
-        checkPassword=re.match("[0-9a-zA-z]{6,12}",password)
-        if checkName == None or checkEmail == None or checkPassword == None:
+        check_name=valid_name(name)
+        check_email=valid_email(email)
+        check_password=valid_password(password)
+        if check_name == None or check_email == None or check_password == None:
             response=jsonify({
             "error":True,
             "message":"註冊失敗，註冊資料格式錯誤"
@@ -68,10 +68,10 @@ class userAuth(Resource):
     def put(self):
         email=request.json["email"]
         password=request.json["password"]
-        checkEmail=re.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",email)
-        checkPassword=re.match("[0-9a-zA-z]{6,12}",password)
+        check_email=valid_email(email)
+        check_password=valid_password(password)
         # print(checkPassword)
-        if checkEmail == None or checkPassword == None: 
+        if check_email == None or check_password == None: 
             response=jsonify({
             "error":True,
             "message":"登入失敗，帳號或密碼格式錯誤"

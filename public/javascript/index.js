@@ -24,7 +24,7 @@ function observe(page, keyword) {
           const data = await response.json();
           let clist = data.data;
           // console.log(clist[0].images[0]);
-          if (clist != "") {
+          if (clist != null) {
             for (let i = 0; i < clist.length; i++) {
               // let imageDiv = document.createElement("div");
               // imageDiv.setAttribute("class", "image");
@@ -52,11 +52,15 @@ function observe(page, keyword) {
               attractionNameDiv.setAttribute("class", "attractionName");
               attractionNameDiv.appendChild(attractionNameText);
 
+              let divTag = document.createElement("div");
+              divTag.setAttribute("class", "for-img");
+
               let aTag = document.createElement("a");
               aTag.setAttribute("class", "image");
               aTag.setAttribute("href", `/attraction/${clist[i].id}`);
 
-              aTag.appendChild(imgTag);
+              divTag.appendChild(imgTag);
+              aTag.appendChild(divTag);
               aTag.appendChild(attractionNameDiv);
               aTag.appendChild(titleDiv);
               content.appendChild(aTag);

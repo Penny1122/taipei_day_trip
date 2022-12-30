@@ -7,6 +7,7 @@ from module.attractions import Search, SearchID, SearchCategory
 from module.users import userSignup,userAuth
 from module.booking import bookingModel
 from module.order import orderModel, orderStatusModel, historicalOrderModel
+from module.member import Member_system
 
 
 app=Flask(__name__,static_folder="public",static_url_path="/")
@@ -50,5 +51,6 @@ api.add_resource(bookingModel, "/api/booking")
 api.add_resource(orderModel, "/api/orders")
 api.add_resource(orderStatusModel, "/api/order/<orderNumber>")
 api.add_resource(historicalOrderModel, "/api/myorder/<userNumber>")
+api.add_resource(Member_system, "/api/member")
 
 app.run(host="0.0.0.0", port=3000, debug=True)

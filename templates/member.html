@@ -7,31 +7,32 @@
   <div class="content">
     <div class="section">
       <div class="account-list">
-        <div class="my"><div>My taipeiTrip</div></div>
+        <div class="my"><div>My taipei Trip</div></div>
         <div class="list">
-          <div>歷史訂單</div>
-          <div>帳號設定</div>
+          <div class="history member-history">歷史訂單</div>
+          <div class="member-system">會員專區</div>
         </div>
       </div>
       <div class="basic-list">
         <div class="basic">
-          <div class="div1">基本資料</div>
-          <div class="div2">修改密碼</div>
+          <div class="div1 change-name-title">基本資料</div>
+          <div class="div2 change-password-title">修改密碼</div>
         </div>
         <div class="change-name">
           <div class="field">
-            <div>　帳號　：</div>
+            <div class="account-info"></div>
           </div>
           <div class="field">
             <div>　姓名　：</div>
             <input
               type="text"
               name="name"
-              class="field-input input-name"
+              class="field-input input-name signInput"
               oninput="check(this)"
             />
+            <div class="change-message"></div>
           </div>
-          <button class="change-button"><div>修改</div></button>
+          <button class="change-button"><div>修改資料</div></button>
         </div>
         <div class="change-password none">
           <div class="field">
@@ -39,8 +40,7 @@
             <input
               type="password"
               name="password"
-              class="signInput"
-              id="signInPassword"
+              class="signInput input-origin-password"
               placeholder="輸入密碼"
               oninput="check(this)"
             />
@@ -50,18 +50,18 @@
             <input
               type="password"
               name="password"
-              class="signInput"
-              id="signInPassword2"
+              class="signInput input-new-password"
               placeholder="輸入密碼"
               oninput="check(this)"
             />
+            <div class="change-message2"></div>
           </div>
-          <button class="change-button"><div>修改</div></button>
+          <button class="change-password-button"><div>修改密碼</div></button>
         </div>
       </div>
     </div>
   </div>
   {% endblock %} {% block js %}
 </div>
-<!-- <script src="/javascript/thankyou.js"></script> -->
+<script src="/javascript/member.js"></script>
 {% endblock %}

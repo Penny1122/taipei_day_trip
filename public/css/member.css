@@ -45,11 +45,24 @@ a {
   margin: 5px;
   background-color: #ffffff;
 }
-.list div {
-  padding: 5px;
-  font-size: 16px;
+.member-system {
+  font-weight: 700;
+  color: #448899;
+}
+.member-history {
   font-weight: 400;
   color: #666666;
+}
+.list div {
+  cursor: pointer;
+  padding: 5px;
+  font-size: 16px;
+}
+.list div:hover {
+  font-weight: 700;
+  color: #448899;
+  background-color: #e8e8e8;
+  border-radius: 5px;
 }
 .basic-list {
   width: 100%;
@@ -59,24 +72,34 @@ a {
 .basic {
   margin: 0 0 20px 0;
   display: flex;
+  border-bottom: 1px solid #e8e8e8;
 }
 .basic div {
+  cursor: pointer;
   margin: 0 10px;
-  padding: 10px 5px;
+  padding: 5px 5px;
   font-size: 20px;
 }
-.div1 {
+.basic div:hover {
+  font-weight: 700;
+  color: #448899;
+  background-color: #e8e8e8;
+  border-radius: 5px;
+}
+.change-name-title {
   font-weight: 700;
   color: #448899;
 }
-.div2 {
+.change-password-title {
   font-weight: 400;
   color: #666666;
 }
-.change-name {
+.change-name,
+.change-password {
   margin: 0 20px;
 }
-.change-button {
+.change-button,
+.change-password-button {
   margin-left: 200px;
   margin-top: 20px;
   cursor: pointer;
@@ -111,4 +134,21 @@ a {
   background-origin: content-box;
   background-repeat: no-repeat;
   background-size: 25px;
+  color: #666666;
+  font-size: 16px;
+  line-height: 13px;
+}
+.field input:focus {
+  outline-color: #448899;
+}
+.change-message,
+.change-message2 {
+  color: #fa5252;
+  font-weight: 400;
+  font-size: 13px;
+  margin: 10px;
+}
+hr {
+  margin: 0 10px 10px 10px;
+  border: 1px solid #e8e8e8;
 }

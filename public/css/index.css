@@ -139,7 +139,6 @@ a {
   border: 1px solid #e8e8e8;
   position: relative;
   z-index: 0;
-  overflow: hidden;
 }
 .image img {
   width: 270px;
@@ -150,6 +149,9 @@ a {
 .image img:hover {
   transform: scale(1.1);
   transition: all 0.5s ease 0s;
+}
+.for-img {
+  overflow: hidden;
 }
 .attractionName {
   display: flex;

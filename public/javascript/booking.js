@@ -12,6 +12,7 @@ const checkCardMonth = document.querySelector(".check-card-month");
 const ordering = document.querySelector(".ordering");
 const bookingText = document.querySelector(".text2");
 const orderCloseImg = document.querySelector(".order-close");
+const loading = document.querySelector(".loading");
 let totalTrip = [];
 let totalPrice = 0;
 
@@ -66,7 +67,19 @@ async function getBookingInfo() {
       }
       total.textContent = `總價：新台幣 ${totalPrice} 元`;
       detail.innerHTML = information;
+      const img = document.querySelectorAll(".image");
+      let imageIndex = 0;
+      img.forEach((item) => {
+        item.addEventListener("load", function () {
+          imageIndex += 1;
+          if (imageIndex == img.length) {
+            loading.style.display = "none";
+            detail.classList.remove("none");
+          }
+        });
+      });
       info.style.display = "block";
+
       const deleteButton = document.querySelectorAll(".delete");
       deleteButton.forEach(function (item, index) {
         item.addEventListener("click", function () {

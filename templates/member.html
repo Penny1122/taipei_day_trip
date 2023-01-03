@@ -1,0 +1,67 @@
+{% extends "index.html" %} {% block head %}
+<link rel="stylesheet" type="text/css" href="/css/member.css" />
+<!-- <link rel="stylesheet" type="text/css" href="/css/booking.css" /> -->
+<title>訂購完成 - 台北一日遊</title>
+{% endblock %} {% block content %}
+<div class="container">
+  <div class="content">
+    <div class="section">
+      <div class="account-list">
+        <div class="my"><div>My taipei Trip</div></div>
+        <div class="list">
+          <div class="history member-history">歷史訂單</div>
+          <div class="member-system">會員專區</div>
+        </div>
+      </div>
+      <div class="basic-list">
+        <div class="basic">
+          <div class="div1 change-name-title">基本資料</div>
+          <div class="div2 change-password-title">修改密碼</div>
+        </div>
+        <div class="change-name">
+          <div class="field">
+            <div class="account-info"></div>
+          </div>
+          <div class="field">
+            <div>　姓名　：</div>
+            <input
+              type="text"
+              name="name"
+              class="field-input input-name signInput"
+              oninput="check(this)"
+            />
+            <div class="change-message"></div>
+          </div>
+          <button class="change-button"><div>修改資料</div></button>
+        </div>
+        <div class="change-password none">
+          <div class="field">
+            <div>　請輸入原密碼　：</div>
+            <input
+              type="password"
+              name="password"
+              class="signInput input-origin-password"
+              placeholder="輸入密碼"
+              oninput="check(this)"
+            />
+          </div>
+          <div class="field">
+            <div>　請輸入新密碼　：</div>
+            <input
+              type="password"
+              name="password"
+              class="signInput input-new-password"
+              placeholder="輸入密碼"
+              oninput="check(this)"
+            />
+            <div class="change-message2"></div>
+          </div>
+          <button class="change-password-button"><div>修改密碼</div></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %} {% block js %}
+</div>
+<script src="/javascript/member.js"></script>
+{% endblock %}

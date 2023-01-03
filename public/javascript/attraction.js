@@ -14,6 +14,8 @@ const errorImage = document.querySelector(".error-image");
 const bookingSuccess = document.querySelector(".booking-success");
 const bookingClose = document.querySelector(".booking-success-close");
 const chooseDate = document.querySelector(".input");
+const loading = document.querySelector(".loading");
+
 let slideIndex = 0;
 let path = location.pathname;
 let today = new Date();
@@ -47,6 +49,17 @@ async function getInfo() {
     }
     slides.innerHTML = image;
     circle.innerHTML = dot;
+    let i = 0;
+    const img = document.querySelectorAll(".img");
+    img.forEach((item) => {
+      let picture = item.firstElementChild;
+      picture.addEventListener("load", function () {
+        i += 1;
+        if (img.length == i) {
+          loading.style.display = "none";
+        }
+      });
+    });
 
     showSlides(slideIndex);
   } catch (error) {
@@ -119,6 +132,7 @@ async function booking(attractionId, date, time, price) {
     }
     const data = await response.json();
     if (data.ok) {
+      getCartStatus();
       errorImage.style.display = "none";
       errorMessage.textContent = "";
       bookingSuccess.style.display = "block";

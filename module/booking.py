@@ -78,12 +78,14 @@ class bookingModel(Resource):
             response.status_code="403"
             return response
         decoded_jwt=jwt.decode(JWTcookie, JWTkey, algorithms="HS256")
-        userId=(decoded_jwt["id"])
+        userId=decoded_jwt["id"]
         try:    
             connection=database.DBconnect().get_connection()
             cursor=connection.cursor(dictionary=True)
             cursor.execute("SELECT attractions.id,attractions.name,attractions.address,attractions.images, booking.date, booking.time, booking.price FROM booking INNER JOIN attractions ON attractions.id=booking.attractionId WHERE booking.userId = %s;",[userId])
             result=cursor.fetchall()
+            cursor.execute("SELECT count(id) FROM booking WHERE userId=%s",[userId])
+            count = cursor.fetchone()
             if result == []:
                 response=jsonify({
                     "data":None
@@ -104,6 +106,7 @@ class bookingModel(Resource):
                 }
                 data.append(list)
             response=jsonify({
+                    "count":count["count(id)"],
                     "data":data
             })
             return response

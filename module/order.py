@@ -6,7 +6,8 @@ from config import secretKey
 import jwt
 from datetime import *
 import requests
-import re
+from verify import *
+# import re
 
 JWTkey=secretKey.jwtconfig()
 TapPayKey = secretKey.TapPay()
@@ -30,7 +31,7 @@ class orderModel(Resource):
             response.status_code="403"
             return response
         decoded_jwt=jwt.decode(JWTcookie, JWTkey, algorithms="HS256")
-        userId=(decoded_jwt["id"])
+        userId=decoded_jwt["id"]
         tz = timezone(timedelta(hours=+8))
         now = datetime.now(tz)
         payment_time = now.strftime("%Y-%m-%d %H:%M:%S")
@@ -43,10 +44,10 @@ class orderModel(Resource):
         contact_name = contact["name"]
         contact_email = contact["email"]
         contact_phone = contact["phone"]
-        checkName=re.match("^[\u4e00-\u9fa5_a-zA-Z0-9_]{2,20}$",contact_name)
-        checkEmail=re.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",contact_email)
-        checkPhone=re.match("^(09)[0-9]{8}$",contact_phone)
-        if not checkName or not checkEmail or not checkPhone:
+        check_name=valid_name(contact_name)
+        check_email=valid_email(contact_email)
+        check_phone=valid_phone(contact_phone)
+        if not check_name or not check_email or not check_phone:
             response=jsonify({
             "error":True,
             "message":"請填寫聯絡資訊。"
@@ -187,3 +188,81 @@ class orderStatusModel(Resource):
         finally:
             cursor.close()
             connection.close()
+
+class historicalOrderModel(Resource):
+    def get(self, userNumber):
+        JWTcookie = request.cookies.get("token")
+        if JWTcookie == None:
+            response=jsonify({
+                "error": True,
+                "message": "未登入系統，請登入系統"
+            })
+            response.status_code="403"
+            return response
+        decoded_jwt = jwt.decode(JWTcookie, JWTkey, algorithms="HS256")
+        userId = (decoded_jwt["id"])
+        if int(userNumber) == int(userId):
+            try:
+                connection=database.DBconnect().get_connection()
+                cursor=connection.cursor(dictionary=True)
+                cursor.execute("SELECT DISTINCT(orderId), paymentTime, contact_name, contact_email, contact_phone,status FROM order_form WHERE userId = %s",[userNumber])
+                result=cursor.fetchall()
+                totalList=[]
+                for i in result:
+                    orderId = i["orderId"]
+                    cursor.execute("SELECT order_form.*, attractions.id, attractions.name, attractions.address, attractions.images FROM order_form INNER JOIN attractions ON attractions.id=order_form.attractionId WHERE order_form.userId =%s AND order_form.orderId = %s",[userNumber,orderId])
+                    clist=cursor.fetchall()
+                    if clist == []:
+                        response=jsonify({
+                            "data":None
+                        })
+                        return response
+                    data=[]
+                    total_price=0
+                    for x in clist:
+                        contact_name=x["contact_name"]
+                        contact_email=x["contact_email"]
+                        contact_phone=x["contact_phone"]
+                        payment_time=x["paymentTime"]
+                        status = x["status"]
+                        list={
+                            "attraction":{
+                                "id":x["id"],
+                                "name":x["name"],
+                                "address":x["address"],
+                                "image":json.loads(x["images"])[0]
+                            },
+                            "date": str(x["date"]),
+                            "time": x["time"],
+                            "price": x["price"]
+                        }
+                        total_price+=x["price"]
+                        data.append(list)
+                    list2={
+                        "number": i["orderId"],
+                        "total_price": total_price,
+                        "payment_time": i["paymentTime"],
+                        "trip":data,
+                        "contact": {
+                            "name": i["contact_name"],
+                            "email": i["contact_email"],
+                            "phone": i["contact_phone"]
+                        },
+                        "status": i["status"]
+                    }
+                    totalList.append(list2)
+
+                    response=jsonify({
+                    "data":totalList
+                })
+                return response
+            except:
+                response=jsonify({
+                    "error": True,
+                    "message": "伺服器內部錯誤"
+                })
+                response.status_code="500"
+                return response
+            finally:
+                cursor.close()
+                connection.close()

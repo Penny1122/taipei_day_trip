@@ -29,6 +29,22 @@ a {
   width: 540px;
   height: 400px;
 }
+.loading {
+  position: absolute;
+  top: 0;
+  background-color: #ffffff;
+  background-image: url("/image/spin.gif");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: inherit;
+  height: inherit;
+  z-index: 99;
+}
+/* .slides {
+  width: inherit;
+  height: inherit;
+} */
 .img {
   display: none;
   position: relative;

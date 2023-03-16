@@ -8,14 +8,14 @@ On the Taipei-day-trip website, you can search for famous attractions in Taipei,
 <img src="public/image/view.gif"/>
 </p>
 
-####:man:Test Account
+#### :man:Test Account
 
 |    -     |       -       |
 | :------: | :-----------: |
 | Account  | test@test.com |
 | Password |   testtest    |
 
-####:credit_card:Test Credit Card
+#### :credit_card:Test Credit Card
 
 |      -      |          -          |
 | :---------: | :-----------------: |
@@ -83,42 +83,42 @@ On the Taipei-day-trip website, you can search for famous attractions in Taipei,
 
 ## ✿ Main features
 
-###:triangular_flag_on_post: Infinite Scroll
+### :triangular_flag_on_post: Infinite Scroll
 
 - Implement the Infinite Scroll effect using the JavaScript Intersection Observer API.
 <p align="center">
 <img src="public/image/scroll.gif" width="500"/>
 </p>
 
-###:triangular_flag_on_post: Search Attractions
+### :triangular_flag_on_post: Search Attractions
 
 - Search for attractions based on categories or keywords.
 <p align="center">
 <img src="public/image/search.gif" width="500"/>
 </p>
 
-###:triangular_flag_on_post: Slideshow
+### :triangular_flag_on_post: Slideshow
 
 - Develop a Carousel Slider that enables effortless browsing of attraction images.
 <p align="center">
 <img src="public/image/slide.gif" width="500"/>
 </p>
 
-###:triangular_flag_on_post: Third-party Payment (TapPay)
+### :triangular_flag_on_post: Third-party Payment (TapPay)
 
 - Connect to the TapPay API, verify the credit card credentials, and initiate the payment process.
 <p align="center">
 <img src="public/image/payment.gif" width="500"/>
 </p>
 
-###:triangular_flag_on_post: Register and Login Validation
+### :triangular_flag_on_post: Register and Login Validation
 
 - To ensure the correctness of data format, form validation is carried out in both the front-end and back-end.
 <p align="center">
 <img src="public/image/validation.gif" width="500"/>
 </p>
 
-###:triangular_flag_on_post: Member System
+### :triangular_flag_on_post: Member System
 
 - Reset username or password and check historical orders.
 <p align="center">

@@ -29,22 +29,22 @@ On the Taipei-day-trip website, you can search for famous attractions in Taipei,
 - [Front-end Technique](#-Front-end-Technique)
 - [Back-end Technique](#-Back-end-Technique)
   - [Web Framework](#Web-Framework)
-  - [Database](#Database)
+  - [Relational Database](#-Relational-Database)
   - [Cloud Service](#Cloud-Service)
   - [Third-party Payment](#Third-party-Payment)
 - [Main features](#-Main-features)
-  - [Infinite Scroll](#-Infinite-Scroll)
-  - [Search Attractions](#-Search-Attractions)
-  - [Slideshow](#-Slideshow)
-  - [Third-party Payment (TapPay)](#-third-party-payment-tappay)
-  - [Register and Login Validation](#-Register-and-Login-Validation)
-  - [Member System](#-Member-System)
+  - [Infinite Scroll](#:triangular_flag_on_post:-Infinite-Scroll)
+  - [Search Attractions](#:triangular_flag_on_post:-Search-Attractions)
+  - [Slideshow](#:triangular_flag_on_post:-Slideshow)
+  - [Third-party Payment (TapPay)](#:triangular_flag_on_post:-third-party-payment-tappay)
+  - [Register and Login Validation](#:triangular_flag_on_post:-Register-and-Login-Validation)
+  - [Member System](#:triangular_flag_on_post:-Member-System)
 - [Contact](#Contact)
 
 ## ✿ Technical Architecture
 
 <p align="center">
-<!-- <img src="static/images/architecture.png" /> -->
+<img src="public/image/structure.png" />
 </p>
 
 ## ✿ Front-end Technique
@@ -66,11 +66,11 @@ On the Taipei-day-trip website, you can search for famous attractions in Taipei,
 <img src="public/image/api.JPG" />
 </p>
 
-### Database
+### Relational Database
 
 - MySQL
 <p align="center">
-<img src="public/image/database.jpg" width="500"/>
+<img src="public/image/database.JPG" width="500"/>
 </p>
 
 ### Cloud Service

@@ -33,12 +33,12 @@ On the Taipei-day-trip website, you can search for famous attractions in Taipei,
   - [Cloud Service](#Cloud-Service)
   - [Third-party Payment](#Third-party-Payment)
 - [Main features](#-Main-features)
-  - [Infinite Scroll](#:triangular_flag_on_post:-Infinite-Scroll)
-  - [Search Attractions](#:triangular_flag_on_post:-Search-Attractions)
-  - [Slideshow](#:triangular_flag_on_post:-Slideshow)
-  - [Third-party Payment (TapPay)](#:triangular_flag_on_post:-third-party-payment-tappay)
-  - [Register and Login Validation](#:triangular_flag_on_post:-Register-and-Login-Validation)
-  - [Member System](#:triangular_flag_on_post:-Member-System)
+  - [Infinite Scroll](#triangular_flag_on_post-Infinite-Scroll)
+  - [Search Attractions](#triangular_flag_on_post-Search-Attractions)
+  - [Slideshow](#triangular_flag_on_post-Slideshow)
+  - [Third-party Payment (TapPay)](#triangular_flag_on_post-third-party-payment-tappay)
+  - [Register and Login Validation](#triangular_flag_on_post-Register-and-Login-Validation)
+  - [Member System](#triangular_flag_on_post-Member-System)
 - [Contact](#Contact)
 
 ## ✿ Technical Architecture
